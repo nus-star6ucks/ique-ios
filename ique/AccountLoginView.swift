@@ -12,18 +12,26 @@ struct AccountLoginView: View {
     @State var password: String = ""
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Account Login")
-                .font(.largeTitle)
-                .bold()
-            TextField("Username", text: $username)
-                .padding()
-                .background()
-                .cornerRadius(5.0)
-            TextField("Password", text: $password)
-                .padding()
-                .background()
-                .cornerRadius(5.0)
+        NavigationView {
+            Form {
+                Section(header: Text("")) {
+                    TextField("Username", text: $username)
+                    TextField("Password", text: $password)
+                }
+                Section {
+                    Button(action: {
+                        print("Perform an action here...")
+                    }) {
+                        Text("Login Now")
+                    }
+                    Button(action: {
+                        print("Perform an action here...")
+                    }) {
+                        Text("Use third-party accounts to login")
+                    }
+                }
+            }
+            .navigationBarTitle("Account Login")
         }
     }
 }

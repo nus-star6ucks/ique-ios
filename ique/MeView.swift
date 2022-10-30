@@ -17,11 +17,10 @@ struct MeView: View {
                  HStack {
                      VStack(alignment: .leading) {
                          Text(":-) Welcome Back,")
-                             .font(.title2)
+                             .font(.title3)
                              .padding(.bottom, 0.5)
                          Text("wwy701")
                              .font(.title)
-                             .fontWeight(.semibold)
                      }
                      Spacer()
                      Image("default-avatar")

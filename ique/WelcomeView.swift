@@ -21,31 +21,40 @@ struct WelcomeView: View {
             }
             Spacer()
             VStack {
-                Button(action: {
-                    print("ntf")
-                }) {
-                    Text("Sign in with GitHub")
-                        .frame(maxWidth: .infinity)
-                        .bold()
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color(red: 0.06274509803921569, green: 0.7254901960784313, blue: 0.5058823529411764))
-                        .cornerRadius(30)
-                }.padding(.bottom, 2.0)
-                Button(action: {
-                    print("ntf")
-                }) {
-                    Text("Sign in with Account")
-                        .frame(maxWidth: .infinity)
-                        .bold()
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color(red: 0.001, green: 0.0, blue: 0.0))
-                        .cornerRadius(30)
+                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                    Image(systemName: "applelogo")
+                        .imageScale(.medium)
+                    Text("Continue with Apple")
                 }
+                    .font(.body.weight(.medium))
+                    .padding(.vertical, 16)
+                    .frame(maxWidth: .infinity)
+                    .clipped()
+                    .foregroundColor(Color(.systemBackground))
+                    .background {
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .fill(.primary)
+                    }
+                HStack(alignment: .firstTextBaseline) {
+                    Image(systemName: "envelope.fill")
+                        .imageScale(.medium)
+                    Text("Continue with Account")
+                }
+                    .font(.body.weight(.medium))
+                    .padding(.vertical, 16)
+                    .frame(maxWidth: .infinity)
+                    .clipped()
+                    .foregroundColor(Color(.displayP3, red: 244/255, green: 188/255, blue: 73/255))
+                    .background {
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .stroke(.clear.opacity(0.25), lineWidth: 0)
+                        .background(RoundedRectangle(cornerRadius: 10, style: .continuous).fill(.yellow.opacity(0.1)))
+                    }
+                
             }
             Text("By signing in you accept our Terms of use and Privacy Policy.")
-                .font(.footnote)
+                .foregroundColor(Color(.tertiaryLabel))
+                .font(.subheadline)
                 .multilineTextAlignment(.center).padding(.top)
         }.padding()
     }
