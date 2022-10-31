@@ -115,9 +115,9 @@
 				17BB2B31290E493600A30BB6 /* TicketsView.swift */,
 				17BB2B22290E46BB00A30BB6 /* HomeView.swift */,
 				17BB2B39290E633900A30BB6 /* StoreCardView.swift */,
+				1777F408290FBF190017FD80 /* TicketCardView.swift */,
 				17BB2B24290E46BC00A30BB6 /* Assets.xcassets */,
 				17BB2B26290E46BC00A30BB6 /* ique.entitlements */,
-				1777F408290FBF190017FD80 /* TicketCardView.swift */,
 				17BB2B27290E46BC00A30BB6 /* Preview Content */,
 			);
 			path = ique;

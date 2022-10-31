@@ -31,6 +31,7 @@ struct TicketsView: View {
     
     var body: some View {
         ScrollView(showsIndicators: false) {
+            Text("why")
             VStack {
                 ForEach(tickets, id: \.ticketId) { ticket in
                     if let store = stores.first(where: {$0.id == ticket.storeId}) {
@@ -40,8 +41,11 @@ struct TicketsView: View {
                 }
             }.onAppear {
                 Task {
-                    let value = try await getTickets()
-                    self.tickets = value
+                    let stores = try await getStores()
+                    self.stores = stores
+                    
+                    let tickets = try await getTickets()
+                    self.tickets = tickets
                 }
             }
             Spacer()
