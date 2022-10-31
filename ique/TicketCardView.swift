@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TicketCard: View {
+struct TicketCardView: View {
     var imageUrl: String
     var title: String
     var description: String
@@ -90,8 +90,8 @@ struct TicketCard: View {
     }
 }
 
-struct TicketCard_Previews: PreviewProvider {
+struct TicketCardView_Previews: PreviewProvider {
     static var previews: some View {
-        TicketCard(imageUrl: "https://ique.vercel.app/demo/photo.39.jpeg", title: "In-N-Out Burger", description: "Kettleman City Rest Stop")
+        TicketCardView(imageUrl: "https://ique.vercel.app/demo/photo.39.jpeg", title: "In-N-Out Burger", description: "Kettleman City Rest Stop")
     }
 }

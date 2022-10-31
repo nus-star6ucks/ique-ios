@@ -107,13 +107,6 @@ struct HomeView: View {
                 .frame(height: 108)
                 .clipped()
         }
-        .overlay {
-            Image("myImage")
-            .renderingMode(.original)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .opacity(0)
-        }
     }
 }
 

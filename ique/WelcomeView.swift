@@ -118,11 +118,9 @@ struct WelcomeView: View {
                                 case .success(let res):
                                     let keychain = KeychainSwift()
                                     keychain.set("token", forKey: res.token)
-                                    
                                 case .failure(let err):
                                     debugPrint(err)
                             }
-                            debugPrint(response)
                         }
                 })
             ])

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1712818C290F96D800E2593E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		1777F407290FBAAF0017FD80 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F406290FBAAF0017FD80 /* Utils.swift */; };
-		1777F409290FBF190017FD80 /* TicketCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F408290FBF190017FD80 /* TicketCard.swift */; };
+		1777F409290FBF190017FD80 /* TicketCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F408290FBF190017FD80 /* TicketCardView.swift */; };
 		1777F40B290FDACD0017FD80 /* TicketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F40A290FDACD0017FD80 /* TicketItem.swift */; };
 		1777F413290FE94D0017FD80 /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1777F412290FE94D0017FD80 /* AlertKit */; };
 		1777F415290FF7ED0017FD80 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F414290FF7ED0017FD80 /* LoginResponse.swift */; };
@@ -26,11 +26,13 @@
 		17BB2B3D290E649000A30BB6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 17BB2B3C290E649000A30BB6 /* Alamofire */; };
 		17BB2B40290E64D500A30BB6 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 17BB2B3F290E64D500A30BB6 /* KeychainSwift */; };
 		17BB2B46290E6DC800A30BB6 /* StoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BB2B45290E6DC800A30BB6 /* StoreDetailView.swift */; };
+		17D5C2B5291009CC008EBC1C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D5C2B4291009CC008EBC1C /* API.swift */; };
+		17D5C2BD29101DFF008EBC1C /* RealHTTP in Frameworks */ = {isa = PBXBuildFile; productRef = 17D5C2BC29101DFF008EBC1C /* RealHTTP */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1777F406290FBAAF0017FD80 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		1777F408290FBF190017FD80 /* TicketCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCard.swift; sourceTree = "<group>"; };
+		1777F408290FBF190017FD80 /* TicketCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardView.swift; sourceTree = "<group>"; };
 		1777F40A290FDACD0017FD80 /* TicketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketItem.swift; sourceTree = "<group>"; };
 		1777F414290FF7ED0017FD80 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		177C85C0290FAF0D0064259A /* StoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItem.swift; sourceTree = "<group>"; };
@@ -46,6 +48,7 @@
 		17BB2B35290E560E00A30BB6 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		17BB2B39290E633900A30BB6 /* StoreCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCardView.swift; sourceTree = "<group>"; };
 		17BB2B45290E6DC800A30BB6 /* StoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailView.swift; sourceTree = "<group>"; };
+		17D5C2B4291009CC008EBC1C /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +60,7 @@
 				1777F413290FE94D0017FD80 /* AlertKit in Frameworks */,
 				17BB2B40290E64D500A30BB6 /* KeychainSwift in Frameworks */,
 				17BB2B3D290E649000A30BB6 /* Alamofire in Frameworks */,
+				17D5C2BD29101DFF008EBC1C /* RealHTTP in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +72,7 @@
 			children = (
 				177C85BF290FAEFB0064259A /* Models */,
 				1777F406290FBAAF0017FD80 /* Utils.swift */,
+				17D5C2B4291009CC008EBC1C /* API.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -112,8 +117,8 @@
 				17BB2B39290E633900A30BB6 /* StoreCardView.swift */,
 				17BB2B24290E46BC00A30BB6 /* Assets.xcassets */,
 				17BB2B26290E46BC00A30BB6 /* ique.entitlements */,
+				1777F408290FBF190017FD80 /* TicketCardView.swift */,
 				17BB2B27290E46BC00A30BB6 /* Preview Content */,
-				1777F408290FBF190017FD80 /* TicketCard.swift */,
 			);
 			path = ique;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 				17BB2B3C290E649000A30BB6 /* Alamofire */,
 				17BB2B3F290E64D500A30BB6 /* KeychainSwift */,
 				1777F412290FE94D0017FD80 /* AlertKit */,
+				17D5C2BC29101DFF008EBC1C /* RealHTTP */,
 			);
 			productName = ique;
 			productReference = 17BB2B1D290E46BB00A30BB6 /* ique.app */;
@@ -179,6 +185,7 @@
 				17BB2B3B290E649000A30BB6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				17BB2B3E290E64D500A30BB6 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				1777F411290FE94D0017FD80 /* XCRemoteSwiftPackageReference "AlertKit" */,
+				17D5C2BB29101DFF008EBC1C /* XCRemoteSwiftPackageReference "RealHTTP" */,
 			);
 			productRefGroup = 17BB2B1E290E46BB00A30BB6 /* Products */;
 			projectDirPath = "";
@@ -212,8 +219,9 @@
 				17BB2B23290E46BB00A30BB6 /* HomeView.swift in Sources */,
 				17BB2B36290E560E00A30BB6 /* WelcomeView.swift in Sources */,
 				17BB2B30290E477D00A30BB6 /* MainView.swift in Sources */,
+				17D5C2B5291009CC008EBC1C /* API.swift in Sources */,
 				1777F415290FF7ED0017FD80 /* LoginResponse.swift in Sources */,
-				1777F409290FBF190017FD80 /* TicketCard.swift in Sources */,
+				1777F409290FBF190017FD80 /* TicketCardView.swift in Sources */,
 				17BB2B32290E493600A30BB6 /* TicketsView.swift in Sources */,
 				177C85C1290FAF0D0064259A /* StoreItem.swift in Sources */,
 				17BB2B21290E46BB00A30BB6 /* iqueApp.swift in Sources */,
@@ -454,6 +462,14 @@
 				minimumVersion = 20.0.0;
 			};
 		};
+		17D5C2BB29101DFF008EBC1C /* XCRemoteSwiftPackageReference "RealHTTP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/immobiliare/RealHTTP";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -471,6 +487,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 17BB2B3E290E64D500A30BB6 /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
+		};
+		17D5C2BC29101DFF008EBC1C /* RealHTTP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17D5C2BB29101DFF008EBC1C /* XCRemoteSwiftPackageReference "RealHTTP" */;
+			productName = RealHTTP;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

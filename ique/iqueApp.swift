@@ -11,7 +11,7 @@ import SwiftUI
 struct iqueApp: App {
     var body: some Scene {
         WindowGroup {
-            WelcomeView()
+            TicketsView()
         }
     }
 }
