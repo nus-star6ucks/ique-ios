@@ -6,10 +6,39 @@
 //
 
 import SwiftUI
+import AlertKit
+
 
 struct StoreDetailView: View {
+    
+    @State private var username: String = ""
+    @State private var password: String = ""
+    @StateObject var customAlertManager = CustomAlertManager()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Button(action: {
+                customAlertManager.show()
+            }, label: {
+                Text("Show custom alert")
+            })
+        }
+        .customAlert(manager: customAlertManager, content: {
+            VStack {
+                Text("Hello Custom Alert").bold().padding(.bottom)
+                TextField("Username", text: $username).textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField("Password", text: $password).textFieldStyle(RoundedBorderTextFieldStyle())
+            }
+        }, buttons: [
+            .cancel(content: {
+                Text("Cancel").bold()
+            }),
+            .regular(content: {
+                Text("Login").bold()
+            }, action: {
+//                print("Sending email: \(customAlertText)")
+            })
+        ])
     }
 }
 
