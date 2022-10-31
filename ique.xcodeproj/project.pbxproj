@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1712818C290F96D800E2593E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		1777F407290FBAAF0017FD80 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F406290FBAAF0017FD80 /* Utils.swift */; };
+		177C85C1290FAF0D0064259A /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177C85C0290FAF0D0064259A /* StoreItem.swift */; };
 		17BB2B21290E46BB00A30BB6 /* iqueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BB2B20290E46BB00A30BB6 /* iqueApp.swift */; };
 		17BB2B23290E46BB00A30BB6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BB2B22290E46BB00A30BB6 /* HomeView.swift */; };
 		17BB2B25290E46BC00A30BB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17BB2B24290E46BC00A30BB6 /* Assets.xcassets */; };
@@ -23,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1777F406290FBAAF0017FD80 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		177C85C0290FAF0D0064259A /* StoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItem.swift; sourceTree = "<group>"; };
 		17BB2B1D290E46BB00A30BB6 /* ique.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ique.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17BB2B20290E46BB00A30BB6 /* iqueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iqueApp.swift; sourceTree = "<group>"; };
 		17BB2B22290E46BB00A30BB6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -36,7 +41,6 @@
 		17BB2B37290E5B9100A30BB6 /* AccountLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountLoginView.swift; sourceTree = "<group>"; };
 		17BB2B39290E633900A30BB6 /* StoreCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCardView.swift; sourceTree = "<group>"; };
 		17BB2B45290E6DC800A30BB6 /* StoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailView.swift; sourceTree = "<group>"; };
-		17BB2B4A290E7D4200A30BB6 /* OpenAPI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = OpenAPI; path = ../../OpenAPI; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1712818C290F96D800E2593E /* (null) in Frameworks */,
 				17BB2B40290E64D500A30BB6 /* KeychainSwift in Frameworks */,
 				17BB2B3D290E649000A30BB6 /* Alamofire in Frameworks */,
 			);
@@ -52,10 +57,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		177C85BE290FAEEA0064259A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				177C85BF290FAEFB0064259A /* Models */,
+				1777F406290FBAAF0017FD80 /* Utils.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		177C85BF290FAEFB0064259A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				177C85C0290FAF0D0064259A /* StoreItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		17BB2B14290E46BB00A30BB6 = {
 			isa = PBXGroup;
 			children = (
-				17BB2B49290E7D4200A30BB6 /* Packages */,
 				17BB2B1F290E46BB00A30BB6 /* ique */,
 				17BB2B1E290E46BB00A30BB6 /* Products */,
 			);
@@ -72,6 +93,7 @@
 		17BB2B1F290E46BB00A30BB6 /* ique */ = {
 			isa = PBXGroup;
 			children = (
+				177C85BE290FAEEA0064259A /* Shared */,
 				17BB2B20290E46BB00A30BB6 /* iqueApp.swift */,
 				17BB2B45290E6DC800A30BB6 /* StoreDetailView.swift */,
 				17BB2B2F290E477D00A30BB6 /* MainView.swift */,
@@ -94,14 +116,6 @@
 				17BB2B28290E46BC00A30BB6 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		17BB2B49290E7D4200A30BB6 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				17BB2B4A290E7D4200A30BB6 /* OpenAPI */,
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,11 +197,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				17BB2B3A290E633900A30BB6 /* StoreCardView.swift in Sources */,
+				1777F407290FBAAF0017FD80 /* Utils.swift in Sources */,
 				17BB2B23290E46BB00A30BB6 /* HomeView.swift in Sources */,
 				17BB2B38290E5B9100A30BB6 /* AccountLoginView.swift in Sources */,
 				17BB2B36290E560E00A30BB6 /* WelcomeView.swift in Sources */,
 				17BB2B30290E477D00A30BB6 /* MainView.swift in Sources */,
 				17BB2B32290E493600A30BB6 /* TicketsView.swift in Sources */,
+				177C85C1290FAF0D0064259A /* StoreItem.swift in Sources */,
 				17BB2B21290E46BB00A30BB6 /* iqueApp.swift in Sources */,
 				17BB2B46290E6DC800A30BB6 /* StoreDetailView.swift in Sources */,
 				17BB2B34290E494B00A30BB6 /* MeView.swift in Sources */,

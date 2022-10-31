@@ -18,7 +18,7 @@ struct StoreCardView: View {
                  image
                     .renderingMode(.original)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+//                    .aspectRatio(contentMode: .fit)
                     .mask {
                         RoundedRectangle(cornerRadius: 6, style: .continuous)
                     }
@@ -57,6 +57,6 @@ struct StoreCardView: View {
 
 struct StoreCardView_Previews: PreviewProvider {
     static var previews: some View {
-        StoreCardView(imageUrl: "https://images.unsplash.com/photo-1667114790847-7653bc249e82?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&auto=format", category: "SwiftUI", heading: "Drawing a Border with Rounded Corners")
+        StoreCardView(imageUrl: "https://images.unsplash.com/photo-1667143139219-93ee3b53395c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1772&q=80", category: "SwiftUI", heading: "Drawing a Border with Rounded Corners")
     }
 }

@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct HomeView: View {
+    
+    @State var storeRows: [[StoreItem]] = []
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
@@ -70,16 +74,34 @@ struct HomeView: View {
                 }
                 .padding(.horizontal)
                 .font(.title3.weight(.bold))
+                
                 VStack(spacing: 24) {
-                    HStack {
-                        StoreCardView(imageUrl: "https://images.unsplash.com/photo-1667114790847-7653bc249e82?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&auto=format", category: "SwiftUI", heading: "Drawing a Border with Rounded Corners")
-                        Spacer()
-                        StoreCardView(imageUrl: "https://images.unsplash.com/photo-1667114790847-7653bc249e82?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&auto=format", category: "SwiftUI", heading: "Drawing a Border with Rounded Corners")
-
+                    ForEach(Array(storeRows.enumerated()), id: \.offset) { index, row in
+                        HStack {
+                            StoreCardView(imageUrl: row[0].resources.imageUrl, category: row[0].type, heading: row[0].name)
+                            Spacer()
+                            if (row.count > 1) {
+                                StoreCardView(imageUrl: row[1].resources.imageUrl, category: row[1].type, heading: row[1].name)
+                            }
+                        }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
                 }
                 .padding(.top, 20)
+                .onAppear {
+                    AF
+                        .request("https://ique.vercel.app/api/stores/list")
+                        .validate(statusCode: 200..<300)
+                        .responseDecodable(of: [StoreItem].self) { response in
+                            debugPrint(response)
+                            switch response.result {
+                                case .success(let storeItems):
+                                    self.storeRows = storeItems.chunked(into: 2)
+                                case .failure(let error):
+                                    print("error", error.localizedDescription)
+                            }
+                        }
+                }
             }
             Spacer()
                 .frame(height: 108)

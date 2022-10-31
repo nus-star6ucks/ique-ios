@@ -14,10 +14,10 @@ struct WelcomeView: View {
                  Image("login").resizable()
                      .aspectRatio(contentMode: .fit)
                  VStack() {
-                     Text("Queue Better,").font(.title).bold()
+                     Text("Queue Better,").font(.title).multilineTextAlignment(.leading).bold()
                      Text("Enjoy Life Happier.").font(.title).bold()
                  }
-                 .padding(.top)
+                    .padding(.top)
             }
             Spacer()
             VStack {
@@ -36,7 +36,7 @@ struct WelcomeView: View {
                         .fill(.primary)
                     }
                 HStack(alignment: .firstTextBaseline) {
-                    Image(systemName: "envelope.fill")
+                    Image(systemName: "phone.fill")
                         .imageScale(.medium)
                     Text("Continue with Account")
                 }
