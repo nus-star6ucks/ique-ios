@@ -6,14 +6,12 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct MeView: View {
     var body: some View {
         VStack {
              VStack(alignment: .leading) {
-                 Text("Me")
-                     .font(.largeTitle)
-                     .bold()
                  HStack {
                      VStack(alignment: .leading) {
                          Text(":-) Welcome Back,")
@@ -42,10 +40,27 @@ struct MeView: View {
                 }
                 HStack {
 //                    Image(systemName: "xmark")
-                    Text("Logout")
+                    Text("Logout").onAppear {
+                        print("donow")
+
+        //                Task {
+        //                    print("donow")
+        //                    AF
+        //                        .request("https://ique.vercel.app/api/users/login", method: .post, parameters: [
+        //                            "username": "wwy701",
+        //                            "password": "991007"
+        //                        ], encoder: JSONParameterEncoder.default).response {
+        //                            response in
+        //                            debugPrint(response)
+        //                        }
+        //                }
+                    
+                    }
                 }
             }
             .listStyle(InsetGroupedListStyle())
+            .navigationBarTitle("Profile")
+  
         }
     }
 }

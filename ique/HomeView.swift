@@ -13,10 +13,23 @@ struct HomeView: View {
     @State var storeRows: [[StoreItem]] = []
     
     var body: some View {
+        
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 0) {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("ONLINE QUEUEING SYSTEM")
+                        .font(.caption)
+                    Text("iQueue")
+                        .font(.title)
+                        .bold()
+                }
                 Spacer()
-                    .frame(height: 39)
+            }
+            .padding(.top)
+            .padding(.horizontal)
+            VStack {
+                Spacer()
+                    .frame(height: 36)
                     .clipped()
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
@@ -64,7 +77,7 @@ struct HomeView: View {
                     }
                     .padding(.horizontal)
                 }
-                .padding(.bottom, 30)
+                .padding(.bottom, 12)
                 HStack {
                     Text("All Stores")
                     Spacer()
@@ -87,26 +100,19 @@ struct HomeView: View {
                         .padding(.horizontal)
                     }
                 }
-                .padding(.top, 20)
                 .onAppear {
-                    AF
-                        .request("https://ique.vercel.app/api/stores/list")
-                        .validate(statusCode: 200..<300)
-                        .responseDecodable(of: [StoreItem].self) { response in
-                            debugPrint(response)
-                            switch response.result {
-                                case .success(let storeItems):
-                                    self.storeRows = storeItems.chunked(into: 2)
-                                case .failure(let error):
-                                    print("error", error.localizedDescription)
-                            }
-                        }
+                    Task {
+                        let storeItems = try await getStores()
+                        self.storeRows = storeItems.chunked(into: 2)
+                    }
                 }
             }
+                .navigationBarTitle(Text("iQue"), displayMode: .inline)
             Spacer()
                 .frame(height: 108)
                 .clipped()
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

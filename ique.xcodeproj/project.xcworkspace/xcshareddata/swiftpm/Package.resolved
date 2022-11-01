@@ -28,12 +28,12 @@
       }
     },
     {
-      "identity" : "realhttp",
+      "identity" : "swiftuirouter",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/immobiliare/RealHTTP",
+      "location" : "https://github.com/frzi/SwiftUIRouter.git",
       "state" : {
-        "revision" : "090e711429ce7b9ea2520a5d296eb9d550767886",
-        "version" : "1.7.4"
+        "revision" : "cd8c2bb32019082075456afa9521ec3ec7499ffa",
+        "version" : "1.3.2"
       }
     }
   ],

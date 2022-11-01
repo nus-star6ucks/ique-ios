@@ -36,6 +36,15 @@ struct WelcomeView: View {
         NavigationView {
             ZStack {
                 VStack() {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Login")
+                                .font(.title)
+                                .bold()
+                        }
+                        Spacer()
+                    }
+                    .padding(.bottom)
                     VStack() {
                          Image("login").resizable()
                              .aspectRatio(contentMode: .fit)
@@ -78,23 +87,23 @@ struct WelcomeView: View {
                             .onTapGesture {
                                 customAlertManager.show()
                             }
-                        
-                    }
-                    Button("Join Us Now!") {
-                        self.showRegisterWebView = true
-                    }
-                        .foregroundColor(Color(.systemBlue))
-                        .font(.body)
-                        .multilineTextAlignment(.center).padding(.top)
-                        .fullScreenCover(isPresented: $showRegisterWebView) {
-                            WebView(url: "https://ique.vercel.app/#/signup")
+                        Button("Join Us Now!") {
+                            self.showRegisterWebView = true
                         }
+                            .foregroundColor(Color(.systemBlue))
+                            .font(.body)
+                            .multilineTextAlignment(.center).padding(.top)
+                            .fullScreenCover(isPresented: $showRegisterWebView) {
+                                WebView(url: "https://ique.vercel.app/#/signup")
+                            }
+                    }
+                    .padding(.vertical)
+
                 }.padding()
             }.customAlert(manager: customAlertManager, content: {
                 VStack {
-                    Text("Contiue with Account").bold().padding(.bottom)
-                    TextField("Username", text: $username).textFieldStyle(RoundedBorderTextFieldStyle())
-                        .textCase(.lowercase)
+                    Text("Continue with Account").bold().padding(.bottom)
+                    TextField("Username", text: $username).textFieldStyle(RoundedBorderTextFieldStyle()).padding(.bottom, 1)
                     SecureField("Password", text: $password).textFieldStyle(RoundedBorderTextFieldStyle())
                 }
             }, buttons: [
@@ -107,21 +116,22 @@ struct WelcomeView: View {
                     if (username.isEmpty || password.isEmpty) {
                         return
                     }
-                    AF
-                        .request("https://ique.vercel.app/api/users/login", method: .post, parameters: [
-                            "username": username,
-                            "password": password
-                        ], encoder: JSONParameterEncoder.default)
-                        .validate(statusCode: 200..<300)
-                        .responseDecodable(of: LoginResponse.self) { response in
-                            switch response.result {
-                                case .success(let res):
-                                    let keychain = KeychainSwift()
-                                    keychain.set("token", forKey: res.token)
-                                case .failure(let err):
-                                    debugPrint(err)
-                            }
-                        }
+                    Task {
+//
+                        let loginResponse = try await login(username: username, password: password)
+                        
+                        let keychain = KeychainSwift()
+                        keychain.set(loginResponse.token, forKey: "token", withAccess: .accessibleWhenUnlocked)
+                        
+                        let userResponse = try await getUser()
+                        let jsonUserData = try JSONEncoder().encode(userResponse)
+                        
+                        keychain.set(String(data: jsonUserData, encoding: .utf8)!, forKey: "user", withAccess: .accessibleWhenUnlocked)
+                        
+                        debugPrint(jsonUserData)
+                        username = ""
+                        password = ""
+                    }
                 })
             ])
         }
@@ -133,3 +143,4 @@ struct WelcomeView_Previews: PreviewProvider {
         WelcomeView()
     }
 }
+

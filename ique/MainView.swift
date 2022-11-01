@@ -15,7 +15,6 @@ struct MainView: View {
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
-
             TicketsView()
                 .tabItem {
                     Label("Tickets", systemImage: "note")

@@ -49,7 +49,7 @@ struct StoreCardView: View {
             .padding(.top, 3)
             .font(.caption2.weight(.semibold))
         }
-        .frame(width: 160)
+        .frame(width: 165)
         .clipped()
         .shadow(color: Color(.sRGB, red: 0/255, green: 0/255, blue: 0/255).opacity(0.1), radius: 8, x: 0, y: 4)
     }

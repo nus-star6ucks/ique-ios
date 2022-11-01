@@ -33,3 +33,24 @@ struct StoreItem: Codable {
     var phoneNumbers: [String]
     var seatTypes: [SeatType]
 }
+
+struct QueueInfo: Codable {
+    var queueId: Int?
+    var waitingSize: Int?
+    var estimateWaitingTime: Int?
+    var seatType: SeatType?
+}
+
+struct StoreDetail: Codable {
+    var id: Int
+    var address: String
+    var merchantId: Int
+    var name: String
+    var type: String
+    var status: String // onService, stopService
+    var registerTime: Int
+    var resources: StoreResources
+    var phoneNumbers: [String]
+    var seatTypes: [SeatType]
+    var queuesInfo: [QueueInfo]
+}
