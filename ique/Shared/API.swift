@@ -8,24 +8,46 @@
 import Foundation
 import KeychainSwift
 import Alamofire
+import SwiftUIRouter
 
-var token: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpcXVldWUiLCJpc3MiOiJ1bXMiLCJ1c2VyVHlwZSI6Im1lcmNoYW50IiwiZXhwIjoxNjY3Mzk4MDQ4LCJpYXQiOjE2NjczOTI2NDgsInVzZXJJZCI6NCwianRpIjoiNDQxYzY1ZWYtMmRkMS00M2ZkLWJjYjQtMzZjYzViMTQxMWMyIiwidXNlcm5hbWUiOiJ3c3kifQ.gQr2KzCo1de2R-Q-7athDSC1dFj7CA82ihbAS71EcYo"
+class AuthRequestInterceptor: RequestInterceptor {
+    func adapt(_ urlRequest: URLRequest, for session: Alamofire.Session, completion: @escaping (Swift.Result<URLRequest, Swift.Error>) -> Void) {}
+
+    func retry(
+        _ request: Request,
+        for session: Session,
+        dueTo error: Error,
+        completion: @escaping (RetryResult) -> Void
+    ) {
+        let response = request.task?.response as? HTTPURLResponse
+        if (response?.statusCode == 401) {
+          let keychain = KeychainSwift()
+          keychain.delete("user")
+          keychain.delete("token")
+        }
+        return completion(.doNotRetry)
+    }
+}
+
+let interceptor = AuthRequestInterceptor()
+
 
 func getStores() async throws -> [StoreItem] {
     return try await AF
         .request("https://ique.vercel.app/api/stores/list",
                  method: .get,
                  headers: [
-            "Content-Type": "application/json",
-        ])
+                    "Content-Type": "application/json",
+                 ],
+                 interceptor: interceptor)
         .validate(statusCode: 200..<300)
         .serializingDecodable([StoreItem].self).value
 }
 
 
 func getTickets() async throws -> [TicketItem] {
-//    let keychain = KeychainSwift()
-//    let token = keychain.get("token")!
+    let keychain = KeychainSwift()
+    let token = keychain.get("token")!
     
     return try await AF
         .request("https://ique.vercel.app/api/queues/tickets?userId=325",
@@ -40,8 +62,8 @@ func getTickets() async throws -> [TicketItem] {
 
 
 func getUser() async throws -> UserResponse {
-//    let keychain = KeychainSwift()
-//    let token = keychain.get("token")!
+    let keychain = KeychainSwift()
+    let token = keychain.get("token")!
     
     return try await AF
         .request("https://ique.vercel.app/api/users",
@@ -55,8 +77,8 @@ func getUser() async throws -> UserResponse {
 }
 
 func refreshToken() async throws -> RefreshTokenResponse {
-//    let keychain = KeychainSwift()
-//    let token = keychain.get("token")!
+    let keychain = KeychainSwift()
+    let token = keychain.get("token")!
     
     return try await AF
         .request("https://ique.vercel.app/api/users/refresh",
@@ -71,8 +93,8 @@ func refreshToken() async throws -> RefreshTokenResponse {
 
 
 func getStoreDetail(storeId: String) async throws -> StoreDetail {
-//    let keychain = KeychainSwift()
-//    let token = keychain.get("token")!
+    let keychain = KeychainSwift()
+    let token = keychain.get("token")!
 
     return try await AF
         .request("https://ique.vercel.app/api/stores/" + String(storeId),
@@ -87,8 +109,8 @@ func getStoreDetail(storeId: String) async throws -> StoreDetail {
 
 
 func getTicketDetail(ticketId: String) async throws -> TicketDetail {
-//    let keychain = KeychainSwift()
-//    let token = keychain.get("token")!
+    let keychain = KeychainSwift()
+    let token = keychain.get("token")!
 
     return try await AF
         .request("https://ique.vercel.app/api/queues/tickets/" + String(ticketId),
@@ -100,6 +122,31 @@ func getTicketDetail(ticketId: String) async throws -> TicketDetail {
         .validate(statusCode: 200..<300)
         .serializingDecodable(TicketDetail.self).value
 }
+
+func queue(queueId: Int, storeId: Int) async throws -> QueueReponse {
+    let keychain = KeychainSwift()
+    let token = keychain.get("token")!
+    
+    let userJsonString = keychain.getData("user")
+    let userData = try JSONDecoder().decode(UserResponse.self, from: userJsonString!)
+
+    let customerId = userData.id
+    
+    return try await AF
+        .request("https://ique.vercel.app/api/queues/tickets", method: .post,
+                 parameters: [
+            "queueId": queueId,
+            "customerId": customerId,
+            "storeId": storeId
+        ],
+                 headers: [
+                     "Content-Type": "application/json",
+                     "Authorization": "Bearer " + token
+                 ])
+        .validate(statusCode: 200..<300)
+        .serializingDecodable(QueueReponse.self).value
+}
+
 
 
 func login(username: String, password: String) async throws -> LoginResponse {

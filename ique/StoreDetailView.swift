@@ -19,139 +19,213 @@ struct StoreDetailView: View {
     }
     
     @EnvironmentObject private var navigator: Navigator
+    @StateObject var alertManager = AlertManager()
     
     @State var store: StoreDetail = StoreDetail(id: 0, address: "", merchantId: 0, name: "Loading", type: "Loading", status: "Loading", registerTime: Date.now, resources: StoreResources(description: "", imageUrl: "", ratings: 0), phoneNumbers: [], seatTypes: [], queuesInfo: [])
     
+    @State var tickets: [TicketItem] = []
+    
     var body: some View {
-        ZStack {
-            Color.gray.opacity(0.06).edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                VStack() {
-                    HStack(alignment: .center) {
-                        Rectangle()
-                            .frame(width: 32, height: 32)
-                            .clipped()
-                            .foregroundColor(Color(.systemBackground))
-                            .overlay {
-                                Image(systemName: "arrow.backward")
-                                    .font(.system(size: 16))
-                                    .foregroundColor(.primary)
-                            }
-                            .clipped()
-                            .cornerRadius(4)
-                            .padding()
-                            .onTapGesture {
-                                navigator.goBack()
-                            }
-                        Spacer()
-                        Text(store.name)
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color.white)
-                        Spacer()
-                        Rectangle()
-                            .frame(width: 32, height: 32)
-                            .padding()
-                            .opacity(0)
+        
+            ZStack {
+                Color.gray.opacity(0.06).edgesIgnoringSafeArea(.all)
+                
+                ScrollView(showsIndicators: false) {
+                    VStack() {
+                        HStack(alignment: .center) {
+                            Rectangle()
+                                .frame(width: 32, height: 32)
+                                .clipped()
+                                .foregroundColor(Color(.systemBackground))
+                                .overlay {
+                                    Image(systemName: "arrow.backward")
+                                        .font(.system(size: 16))
+                                        .foregroundColor(.primary)
+                                }
+                                .clipped()
+                                .cornerRadius(4)
+                                .padding()
+                                .onTapGesture {
+                                    navigator.goBack()
+                                }
+                            Spacer()
+                            Text(store.name)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color.white)
+                            Spacer()
+                            Rectangle()
+                                .frame(width: 32, height: 32)
+                                .padding()
+                                .opacity(0)
+                        }
+                        .padding(.horizontal, 2)
                     }
-                    .padding(12)
-                }
                     .padding(.top, 24)
-                    .frame(maxWidth: .infinity, maxHeight: 300, alignment: .top)
+                    .frame(maxWidth: .infinity, minHeight: 300, alignment: .top)
                     .clipped()
                     .background {
                         AsyncImage(url: URL(string: store.resources.imageUrl)) { image in
-                             image
+                            image
                                 .renderingMode(.original)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                         } placeholder: {
-                             ProgressView().frame(height: 300, alignment: .center)
-                         }
+                        } placeholder: {
+                            ProgressView().frame(height: 300, alignment: .center)
+                        }
                     }
                     .mask {
                         Rectangle()
                     }
                     .cornerRadius(12)
-                    .ignoresSafeArea()
                     
                     
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack(alignment: .firstTextBaseline) {
-                        Text(store.name)
-                            .font(.system(size: 29, weight: .semibold))
-                        Spacer()
-                        HStack(alignment: .firstTextBaseline, spacing: 3) {
-                            Image(systemName: "star")
-                                .foregroundColor(.orange)
-                            Text(String(store.resources.ratings))
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack(alignment: .firstTextBaseline) {
+                            Text(store.name)
+                                .font(.title)
+                                .bold()
+                            Spacer()
+                            HStack(alignment: .firstTextBaseline, spacing: 3) {
+                                Image(systemName: "star")
+                                    .foregroundColor(.orange)
+                                Text(String(store.resources.ratings))
+                            }
+                            .font(.system(size: 16, weight: .regular))
                         }
-                        .font(.system(size: 16, weight: .regular))
                     }
-                    .padding(.top, -24)
-                }
-                .padding(.horizontal, 24)
-                
-                VStack(spacing: 0) {
+                    .padding(.horizontal, 24)
+                    .padding(.vertical)
+                    
                     VStack(spacing: 0) {
-                        Text(store.resources.description)
-                            .font(.subheadline)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .lineSpacing(1)
+                        VStack(spacing: 0) {
+                            Text(store.resources.description)
+                                .font(.subheadline)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .lineSpacing(1)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .clipped()
+                        }
+                        .padding()
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(store.address)
+                                    .font(.subheadline.weight(.semibold))
+                                Text(store.type)
+                                    .foregroundColor(.secondary)
+                                    .font(.footnote)
+                            }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .clipped()
-                    }
-                    .padding()
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(store.address)
-                                .font(.subheadline.weight(.semibold))
-                            Text(store.type)
-                                .foregroundColor(.secondary)
-                                .font(.footnote)
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .clipped()
+                        .padding(.horizontal)
+                        .padding(.vertical, 10)
+                        .background {
+                            RoundedRectangle(cornerRadius: 0, style: .continuous)
+                                .fill(Color(.systemGray6))
+                        }
                     }
-                    .padding(.horizontal)
-                    .padding(.vertical, 10)
+                    .clipped()
                     .background {
-                        RoundedRectangle(cornerRadius: 0, style: .continuous)
-                        .fill(Color(.systemGray5))
+                        Rectangle()
+                            .fill(Color(.systemGray6))
                     }
-                }
-                .clipped()
-                .background {
-                    Rectangle()
-                    .fill(Color(.systemGray6))
-                }
-                .mask {
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                }
-                .padding(.horizontal, 12)
-                .padding(.bottom, 24)
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack(alignment: .firstTextBaseline) {
-                        Text("Queues")
-                            .font(.title2)
-                            .bold()
-                        Spacer()
+                    .mask {
+                        RoundedRectangle(cornerRadius: 8, style: .continuous)
                     }
-                }
-                .padding(.horizontal, 24)
-                .padding(.top, 12)
-                Spacer()
-            }.onAppear {
-                Task {
-                    let store = try await getStoreDetail(storeId: storeId)
-                    self.store = store
-                }
-            }
-            Spacer()
-                .frame(height: 108)
-                .clipped()
-        }
+                    .padding(.horizontal, 12)
+                    .padding(.bottom, 12)
+                    
+                    if (store.status == "onService") {
+                        VStack(spacing: 0) {
+                            Text("Select a Queue….")
+                                .frame(alignment: .leading)
+                                .clipped()
+                                .padding(.leading)
+                                .foregroundColor(Color(.tertiaryLabel))
+                                .padding(.top)
+                            Divider()
+                                .padding(.top)
+                                .opacity(0.5)
+                            VStack(spacing: 0) {
+                                ForEach(store.queuesInfo, id: \.queueId) { q in
+                                    HStack(alignment: .firstTextBaseline) {
+                                        Text(q.seatType?.name ?? "")
+                                            .font(.body)
+                                            .foregroundColor(.primary)
+                                        Spacer()
+                                        HStack(spacing: 2) {
+                                            Image(systemName: "person")
+                                                .frame(width: 20)
+                                                .clipped()
+                                            Text(String(q.waitingSize!))
+                                            if let ticket = tickets.first(where: {$0.queueId == q.queueId}) {
+                                                Button("Go to Ticket") {
+                                                    navigator.navigate("/tickets/" + String(ticket.ticketId))
+                                                }
+                                                    .padding(.vertical, 4)
+                                                    .padding(.horizontal, 8)
+                                                    .foregroundColor(Color.white)
+                                                    .background(primaryColor)
+                                                    .cornerRadius(4)
+                                                    .clipped()
+                                                    .padding(.leading)
+                                            } else {
+                                                Button("Queue!") {
+                                                    alertManager.show(primarySecondary: .info(
+                                                            title: "Request Ticket Confirmation",
+                                                            message: "You're requesting to queue \(q.seatType?.name ?? ""). There are \(q.waitingSize!) group(s) waiting in front of you, expect to wait \(q.estimateWaitingTime!) min(s).",
+                                                            primaryButton: Alert.Button.destructive(Text("OK")) {
+                                                                Task {
+                                                                    let ticket = try await queue(queueId: +q.queueId!, storeId: +store.id)
+                                                                    navigator.navigate("/tickets/" + String(ticket.ticketId))
+                                                                }
+                                                    },
+                                                            secondaryButton: Alert.Button.cancel()))
+
+                                                }
+                                                    .padding(.vertical, 4)
+                                                    .padding(.horizontal, 8)
+                                                    .foregroundColor(Color.white)
+                                                    .background(primaryColor)
+                                                    .cornerRadius(4)
+                                                    .clipped()
+                                                    .padding(.leading)
+                                            }
+                                        }
+                                        .foregroundColor(Color.gray)
+                                        
+                                    }
+                                        .padding(.vertical)
+                                        .background(alignment: .bottom) {
+                                            Divider()
+                                                .opacity(0.25)
+                                        }
+                                        .padding(.horizontal)
+                                        .font(.subheadline)
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                        }
+                            .clipped()
+                            .background {
+                                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                    .fill(Color(.systemBackground))
+                            }
+                            .padding(.horizontal, 12)
+                    }
+                    Spacer()
+                }.onAppear {
+                    Task {
+                        let store = try await getStoreDetail(storeId: storeId)
+                        self.store = store
+                        
+                        let tickets = try await getTickets()
+                        self.tickets = tickets
+                    }
+                }.uses(alertManager)
+            }.ignoresSafeArea()
+        
     }
 }
 
