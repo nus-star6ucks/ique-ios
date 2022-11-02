@@ -14,8 +14,6 @@ struct StoreResources: Codable {
     var ratings: Int
 }
 
-
-
 struct SeatType: Codable {
     var id: Int?
     var name: String
@@ -28,7 +26,7 @@ struct StoreItem: Codable {
     var type: String
     var address: String
     var status: String // onService, stopService
-    var registerTime: Int
+    var registerTime: Date
     var resources: StoreResources
     var phoneNumbers: [String]
     var seatTypes: [SeatType]
@@ -48,7 +46,7 @@ struct StoreDetail: Codable {
     var name: String
     var type: String
     var status: String // onService, stopService
-    var registerTime: Int
+    var registerTime: Date
     var resources: StoreResources
     var phoneNumbers: [String]
     var seatTypes: [SeatType]

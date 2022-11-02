@@ -24,7 +24,7 @@ struct TicketsView: View {
                     VStack {
                         ForEach(tickets, id: \.ticketId) { ticket in
                             if let store = stores.first(where: {$0.id == ticket.storeId}) {
-                                TicketCardView(imageUrl: store.resources.imageUrl, title: String(ticket.queueNumber) + " - " + ticket.seatType.name, description: store.name)
+                                TicketCardView(imageUrl: store.resources.imageUrl, title: String(ticket.queueNumber) + " - " + ticket.seatType.name, description: store.name, footNote: ticket.startTime.timeAgoDisplay())
                             } else {
                             }
                         }

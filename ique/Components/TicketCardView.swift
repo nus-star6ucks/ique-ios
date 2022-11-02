@@ -11,7 +11,7 @@ struct TicketCardView: View {
     var imageUrl: String
     var title: String
     var description: String
-    
+    var footNote: String
     
     var body: some View {
         VStack {
@@ -43,7 +43,7 @@ struct TicketCardView: View {
                         .clipped()
                         .font(.footnote.weight(.regular))
                         .foregroundColor(.secondary)
-                    Text("Adds 9m")
+                    Text(footNote)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .clipped()
                         .font(.caption.weight(.medium))
@@ -92,6 +92,6 @@ struct TicketCardView: View {
 
 struct TicketCardView_Previews: PreviewProvider {
     static var previews: some View {
-        TicketCardView(imageUrl: "https://ique.vercel.app/demo/photo.39.jpeg", title: "In-N-Out Burger", description: "Kettleman City Rest Stop")
+        TicketCardView(imageUrl: "https://ique.vercel.app/demo/photo.39.jpeg", title: "In-N-Out Burger", description: "Kettleman City Rest Stop", footNote: "")
     }
 }
