@@ -8,6 +8,7 @@
 import SwiftUI
 import AlertKit
 import Alamofire
+import SwiftUIRouter
 
 struct StoreDetailView: View {
     
@@ -17,8 +18,9 @@ struct StoreDetailView: View {
         self.storeId = storeId
     }
     
+    @EnvironmentObject private var navigator: Navigator
     
-    @State var store: StoreDetail = StoreDetail(id: 0, address: "", merchantId: 0, name: "Luca Italian Cuisine", type: "Loading", status: "Loading", registerTime: Date.now, resources: StoreResources(description: "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients", imageUrl: "https://ique.vercel.app/demo/photo.1.jpeg", ratings: 5), phoneNumbers: [], seatTypes: [], queuesInfo: [])
+    @State var store: StoreDetail = StoreDetail(id: 0, address: "", merchantId: 0, name: "Loading", type: "Loading", status: "Loading", registerTime: Date.now, resources: StoreResources(description: "", imageUrl: "", ratings: 0), phoneNumbers: [], seatTypes: [], queuesInfo: [])
     
     var body: some View {
         ZStack {
@@ -33,14 +35,18 @@ struct StoreDetailView: View {
                             .foregroundColor(Color(.systemBackground))
                             .overlay {
                                 Image(systemName: "arrow.backward")
-                                .foregroundColor(.primary)
-                                .font(.title3)
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.primary)
                             }
                             .clipped()
                             .cornerRadius(4)
                             .padding()
+                            .onTapGesture {
+                                navigator.goBack()
+                            }
                         Spacer()
                         Text(store.name)
+                            .fontWeight(.semibold)
                             .foregroundColor(Color.white)
                         Spacer()
                         Rectangle()

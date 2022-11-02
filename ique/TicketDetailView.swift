@@ -16,8 +16,6 @@ struct TicketDetailView: View {
         self.ticketId = ticketId
     }
     
-
-    
     @EnvironmentObject private var navigator: Navigator
     
     @State var store: StoreDetail = StoreDetail(id: 0, address: "", merchantId: 0, name: "Luca Italian Cuisine", type: "Loading", status: "Loading", registerTime: Date.now, resources: StoreResources(description: "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients", imageUrl: "https://ique.vercel.app/demo/photo.1.jpeg", ratings: 5), phoneNumbers: [], seatTypes: [], queuesInfo: [])
@@ -48,6 +46,7 @@ struct TicketDetailView: View {
                             }
                         Spacer()
                         Text("You are Queueing")
+                            .fontWeight(.semibold)
                             .foregroundColor(Color.white)
                         Spacer()
                         Rectangle()
@@ -76,7 +75,8 @@ struct TicketDetailView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(alignment: .firstTextBaseline) {
                         Text(store.name)
-                            .font(.system(size: 32, weight: .semibold))
+                            .font(.title)
+                            .fontWeight(.bold)
                         Spacer()
                     }
                 }
@@ -89,50 +89,55 @@ struct TicketDetailView: View {
                             Text("Your Queue Number")
                                 .fontWeight(.regular)
                                 .multilineTextAlignment(.center)
-                                .font(.title3)
+                                .font(.subheadline)
                                 .foregroundColor(Color.gray)
                                 .padding(.top, 12)
+                            
                             Text((ticket.queueInfo.waitingSize! - 1) == 0 ? "You are Next!" : String(ticket.queueNumber))
                                 .bold()
                                 .multilineTextAlignment(.center)
                                 .font(.title)
                                 .padding(.vertical, 12)
+                                .padding(.top, -12)
                         }
                             .padding(12)
                         HStack(spacing: 8) {
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("Type")
+                                    .font(.subheadline)
                                     .fontWeight(.regular)
                                     .foregroundColor(Color.gray)
                                     .multilineTextAlignment(.leading)
                                 Text(String(ticket.queueInfo.seatType?.name ?? ""))
                                     .fontWeight(.semibold)
                                     .multilineTextAlignment(.leading)
-                                    .font(.title3)
+                                    .font(.headline)
                                     
                             }
                             Spacer()
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("Ahead")
+                                    .font(.subheadline)
                                     .fontWeight(.regular)
                                     .foregroundColor(Color.gray)
                                     .multilineTextAlignment(.leading)
                                 Text(String(ticket.queueInfo.waitingSize! - 1) + " group(s)")
                                     .fontWeight(.semibold)
                                     .multilineTextAlignment(.leading)
-                                    .font(.title3)
+                                    .font(.headline)
                                     
                             }
                             Spacer()
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("Estimated Time")
+                                    .font(.subheadline)
                                     .fontWeight(.regular)
                                     .foregroundColor(Color.gray)
                                     .multilineTextAlignment(.leading)
                                 Text(String(ticket.queueInfo.estimateWaitingTime!) + " mins")
                                     .fontWeight(.semibold)
                                     .multilineTextAlignment(.leading)
-                                    .font(.title3)
+                                    .font(.headline)
                                     
                             }
                         }
@@ -142,7 +147,8 @@ struct TicketDetailView: View {
                     }
                         .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.white/*@END_MENU_TOKEN@*/)
                         .cornerRadius(8)
-                        .padding(12)
+                        .padding(.bottom)
+                        .padding(.horizontal)
                     
                     VStack(alignment: .leading, spacing: 4) {
                         Text("· Please ensure everyone is present when queue number is called.")
@@ -157,7 +163,7 @@ struct TicketDetailView: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .foregroundColor(Color.gray)
                 }
-                
+    
                 
                 Spacer()
             }.onAppear {

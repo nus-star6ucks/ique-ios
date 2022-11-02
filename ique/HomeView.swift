@@ -7,10 +7,13 @@
 
 import SwiftUI
 import Alamofire
+import SwiftUIRouter
 
 struct HomeView: View {
     
     @State var storeRows: [[StoreItem]] = []
+    
+    @EnvironmentObject private var navigator: Navigator
     
     var body: some View {
         ZStack {
@@ -91,9 +94,15 @@ struct HomeView: View {
                         ForEach(Array(storeRows.enumerated()), id: \.offset) { index, row in
                             HStack {
                                 StoreCardView(imageUrl: row[0].resources.imageUrl, category: row[0].type, heading: row[0].name)
+                                    .onTapGesture {
+                                        navigator.navigate("/stores/" + String(row[0].id))
+                                    }
                                 Spacer()
                                 if (row.count > 1) {
                                     StoreCardView(imageUrl: row[1].resources.imageUrl, category: row[1].type, heading: row[1].name)
+                                        .onTapGesture {
+                                            navigator.navigate("/stores/" + String(row[1].id))
+                                        }
                                 }
                             }
                             .padding(.horizontal)
@@ -106,12 +115,10 @@ struct HomeView: View {
                         }
                     }
                 }
-                    .navigationBarTitle(Text("iQue"), displayMode: .inline)
                 Spacer()
                     .frame(height: 108)
                     .clipped()
             }
-            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }
