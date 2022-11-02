@@ -9,7 +9,7 @@ import Foundation
 import KeychainSwift
 import Alamofire
 
-var token: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpcXVldWUiLCJpc3MiOiJ1bXMiLCJ1c2VyVHlwZSI6ImN1c3RvbWVyIiwiZXhwIjoxNjY3MzgzNjM1LCJpYXQiOjE2NjczNzgyMzUsInVzZXJJZCI6MzI1LCJqdGkiOiIyZDQ1MTI4OS1hYTYzLTRhOTEtYjVlYy03MjdjY2ZmNWIwYzEiLCJ1c2VybmFtZSI6InBjZG90ZmFuIn0.Gfo0yHx6-dH4AaZW9RCKvZchwK8zun83zQukb21hzjA"
+var token: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpcXVldWUiLCJpc3MiOiJ1bXMiLCJ1c2VyVHlwZSI6Im1lcmNoYW50IiwiZXhwIjoxNjY3Mzk4MDQ4LCJpYXQiOjE2NjczOTI2NDgsInVzZXJJZCI6NCwianRpIjoiNDQxYzY1ZWYtMmRkMS00M2ZkLWJjYjQtMzZjYzViMTQxMWMyIiwidXNlcm5hbWUiOiJ3c3kifQ.gQr2KzCo1de2R-Q-7athDSC1dFj7CA82ihbAS71EcYo"
 
 func getStores() async throws -> [StoreItem] {
     return try await AF
@@ -70,9 +70,7 @@ func refreshToken() async throws -> RefreshTokenResponse {
 }
 
 
-
-
-func getStoreDetail(storeId: Int) async throws -> StoreDetail {
+func getStoreDetail(storeId: String) async throws -> StoreDetail {
 //    let keychain = KeychainSwift()
 //    let token = keychain.get("token")!
 
@@ -85,6 +83,22 @@ func getStoreDetail(storeId: Int) async throws -> StoreDetail {
         ])
         .validate(statusCode: 200..<300)
         .serializingDecodable(StoreDetail.self).value
+}
+
+
+func getTicketDetail(ticketId: String) async throws -> TicketDetail {
+//    let keychain = KeychainSwift()
+//    let token = keychain.get("token")!
+
+    return try await AF
+        .request("https://ique.vercel.app/api/queues/tickets/" + String(ticketId),
+                 method: .get,
+                 headers: [
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        ])
+        .validate(statusCode: 200..<300)
+        .serializingDecodable(TicketDetail.self).value
 }
 
 

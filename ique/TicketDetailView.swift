@@ -6,10 +6,23 @@
 //
 
 import SwiftUI
+import SwiftUIRouter
 
 struct TicketDetailView: View {
     
+    var ticketId: String
+    
+    init(ticketId: String) {
+        self.ticketId = ticketId
+    }
+    
+
+    
+    @EnvironmentObject private var navigator: Navigator
+    
     @State var store: StoreDetail = StoreDetail(id: 0, address: "", merchantId: 0, name: "Luca Italian Cuisine", type: "Loading", status: "Loading", registerTime: Date.now, resources: StoreResources(description: "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients", imageUrl: "https://ique.vercel.app/demo/photo.1.jpeg", ratings: 5), phoneNumbers: [], seatTypes: [], queuesInfo: [])
+    
+    @State var ticket: TicketDetail = TicketDetail(customerId: 0, endTime: Date.now, queueInfo: QueueInfo(queueId: 0, waitingSize: 999, estimateWaitingTime: 0, seatType: SeatType(name: "none")), queueNumber: 0, startTime: Date.now, status: "", storeId: 0, id: 0)
     
     var body: some View {
         ZStack {
@@ -24,12 +37,15 @@ struct TicketDetailView: View {
                             .foregroundColor(Color(.systemBackground))
                             .overlay {
                                 Image(systemName: "arrow.backward")
-                                .foregroundColor(.primary)
-                                .font(.title3)
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.primary)
                             }
                             .clipped()
                             .cornerRadius(4)
                             .padding()
+                            .onTapGesture {
+                                navigator.goBack()
+                            }
                         Spacer()
                         Text("You are Queueing")
                             .foregroundColor(Color.white)
@@ -76,7 +92,7 @@ struct TicketDetailView: View {
                                 .font(.title3)
                                 .foregroundColor(Color.gray)
                                 .padding(.top, 12)
-                            Text("231")
+                            Text((ticket.queueInfo.waitingSize! - 1) == 0 ? "You are Next!" : String(ticket.queueNumber))
                                 .bold()
                                 .multilineTextAlignment(.center)
                                 .font(.title)
@@ -89,7 +105,7 @@ struct TicketDetailView: View {
                                     .fontWeight(.regular)
                                     .foregroundColor(Color.gray)
                                     .multilineTextAlignment(.leading)
-                                Text("Super")
+                                Text(String(ticket.queueInfo.seatType?.name ?? ""))
                                     .fontWeight(.semibold)
                                     .multilineTextAlignment(.leading)
                                     .font(.title3)
@@ -101,7 +117,7 @@ struct TicketDetailView: View {
                                     .fontWeight(.regular)
                                     .foregroundColor(Color.gray)
                                     .multilineTextAlignment(.leading)
-                                Text("1 group(s)")
+                                Text(String(ticket.queueInfo.waitingSize! - 1) + " group(s)")
                                     .fontWeight(.semibold)
                                     .multilineTextAlignment(.leading)
                                     .font(.title3)
@@ -113,7 +129,7 @@ struct TicketDetailView: View {
                                     .fontWeight(.regular)
                                     .foregroundColor(Color.gray)
                                     .multilineTextAlignment(.leading)
-                                Text("10 mins")
+                                Text(String(ticket.queueInfo.estimateWaitingTime!) + " mins")
                                     .fontWeight(.semibold)
                                     .multilineTextAlignment(.leading)
                                     .font(.title3)
@@ -146,7 +162,10 @@ struct TicketDetailView: View {
                 Spacer()
             }.onAppear {
                 Task {
-                    let store = try await getStoreDetail(storeId: 240)
+                    let ticket = try await getTicketDetail(ticketId: ticketId)
+                    self.ticket = ticket
+                    
+                    let store = try await getStoreDetail(storeId: String(ticket.storeId))
                     self.store = store
                 }
             }
@@ -159,6 +178,6 @@ struct TicketDetailView: View {
 
 struct TicketDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TicketDetailView()
+        TicketDetailView(ticketId: "130")
     }
 }

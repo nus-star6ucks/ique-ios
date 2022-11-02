@@ -8,13 +8,14 @@
 import SwiftUI
 import Alamofire
 import KeychainSwift
-
-
+import SwiftUIRouter
 
 struct TicketsView: View {
     
     @State var tickets: [TicketItem] = []
     @State var stores: [StoreItem] = []
+    
+    @EnvironmentObject private var navigator: Navigator
     
     var body: some View {
         NavigationView {
@@ -25,20 +26,24 @@ struct TicketsView: View {
                         ForEach(tickets, id: \.ticketId) { ticket in
                             if let store = stores.first(where: {$0.id == ticket.storeId}) {
                                 TicketCardView(imageUrl: store.resources.imageUrl, title: String(ticket.queueNumber) + " - " + ticket.seatType.name, description: store.name, footNote: ticket.startTime.timeAgoDisplay())
+                                    .onTapGesture {
+                                        navigator.navigate("/tickets/" + String(ticket.ticketId))
+                                    }
                             } else {
                             }
                         }
                     }
-                    .padding(.top, 36)
-                    .onAppear {
-                        Task {
-                            let stores = try await getStores()
-                            self.stores = stores
-                            
-                            let tickets = try await getTickets()
-                            self.tickets = tickets
+                        .padding(.top, 36)
+                        .onAppear {
+                            Task {
+                                let stores = try await getStores()
+                                self.stores = stores
+                                
+                                let tickets = try await getTickets()
+                                self.tickets = tickets
+                            }
                         }
-                    }
+                        
                 }
                 .navigationTitle(Text("Tickets"))
             }

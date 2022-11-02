@@ -11,6 +11,13 @@ import Alamofire
 
 struct StoreDetailView: View {
     
+    var storeId: String
+    
+    init(storeId: String) {
+        self.storeId = storeId
+    }
+    
+    
     @State var store: StoreDetail = StoreDetail(id: 0, address: "", merchantId: 0, name: "Luca Italian Cuisine", type: "Loading", status: "Loading", registerTime: Date.now, resources: StoreResources(description: "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients", imageUrl: "https://ique.vercel.app/demo/photo.1.jpeg", ratings: 5), phoneNumbers: [], seatTypes: [], queuesInfo: [])
     
     var body: some View {
@@ -128,7 +135,7 @@ struct StoreDetailView: View {
                 Spacer()
             }.onAppear {
                 Task {
-                    let store = try await getStoreDetail(storeId: 240)
+                    let store = try await getStoreDetail(storeId: storeId)
                     self.store = store
                 }
             }
@@ -141,7 +148,7 @@ struct StoreDetailView: View {
 
 struct StoreDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        StoreDetailView()
+        StoreDetailView(storeId: "240")
     }
 }
 

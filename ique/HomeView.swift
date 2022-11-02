@@ -83,9 +83,6 @@ struct HomeView: View {
                     HStack {
                         Text("All Stores")
                         Spacer()
-                        Image(systemName: "ellipsis.circle")
-                            .font(.title3.weight(.medium))
-                            .foregroundColor(.red)
                     }
                     .padding(.horizontal)
                     .font(.title3.weight(.bold))

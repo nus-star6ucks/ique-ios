@@ -57,10 +57,16 @@ private struct RootRoutes: View {
             Route("auth", content: WelcomeView())
             
             Route("tickets", content: TicketsView())
+                        
+            Route("tickets/:id") { info in
+                TicketDetailView(ticketId: info.parameters["id"]!)
+            }
             
             Route("me", content: MeView())
             
-            Route("stores/*", content: StoreDetailView())
+            Route("stores/:id") { info in
+                StoreDetailView(storeId: info.parameters["id"]!)
+            }
             
             Route {
                 Navigate(to: "/auth", replace: true)

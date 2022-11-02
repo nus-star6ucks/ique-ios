@@ -10,10 +10,10 @@
 		1712818C290F96D800E2593E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		1777F407290FBAAF0017FD80 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F406290FBAAF0017FD80 /* Utils.swift */; };
 		1777F409290FBF190017FD80 /* TicketCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F408290FBF190017FD80 /* TicketCardView.swift */; };
-		1777F40B290FDACD0017FD80 /* TicketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F40A290FDACD0017FD80 /* TicketItem.swift */; };
+		1777F40B290FDACD0017FD80 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F40A290FDACD0017FD80 /* Ticket.swift */; };
 		1777F413290FE94D0017FD80 /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1777F412290FE94D0017FD80 /* AlertKit */; };
 		1777F415290FF7ED0017FD80 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F414290FF7ED0017FD80 /* LoginResponse.swift */; };
-		177C85C1290FAF0D0064259A /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177C85C0290FAF0D0064259A /* StoreItem.swift */; };
+		177C85C1290FAF0D0064259A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177C85C0290FAF0D0064259A /* Store.swift */; };
 		177D355E29117860001F7A1F /* SwiftUIRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 177D355D29117860001F7A1F /* SwiftUIRouter */; };
 		177FAEDC29124A42009A0121 /* TicketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177FAEDB29124A42009A0121 /* TicketDetailView.swift */; };
 		17BB2B21290E46BB00A30BB6 /* iqueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BB2B20290E46BB00A30BB6 /* iqueApp.swift */; };
@@ -36,9 +36,9 @@
 /* Begin PBXFileReference section */
 		1777F406290FBAAF0017FD80 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1777F408290FBF190017FD80 /* TicketCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCardView.swift; sourceTree = "<group>"; };
-		1777F40A290FDACD0017FD80 /* TicketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketItem.swift; sourceTree = "<group>"; };
+		1777F40A290FDACD0017FD80 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
 		1777F414290FF7ED0017FD80 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
-		177C85C0290FAF0D0064259A /* StoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItem.swift; sourceTree = "<group>"; };
+		177C85C0290FAF0D0064259A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		177FAEDB29124A42009A0121 /* TicketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailView.swift; sourceTree = "<group>"; };
 		17BB2B1D290E46BB00A30BB6 /* ique.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ique.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17BB2B20290E46BB00A30BB6 /* iqueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iqueApp.swift; sourceTree = "<group>"; };
@@ -87,8 +87,8 @@
 			isa = PBXGroup;
 			children = (
 				1777F414290FF7ED0017FD80 /* LoginResponse.swift */,
-				177C85C0290FAF0D0064259A /* StoreItem.swift */,
-				1777F40A290FDACD0017FD80 /* TicketItem.swift */,
+				177C85C0290FAF0D0064259A /* Store.swift */,
+				1777F40A290FDACD0017FD80 /* Ticket.swift */,
 				17E5A4CF2910C00B00AEBA65 /* UserResponse.swift */,
 				17E5A4D12910C0B300AEBA65 /* RefreshTokenResponse.swift */,
 			);
@@ -232,7 +232,7 @@
 			files = (
 				17BB2B3A290E633900A30BB6 /* StoreCardView.swift in Sources */,
 				1777F407290FBAAF0017FD80 /* Utils.swift in Sources */,
-				1777F40B290FDACD0017FD80 /* TicketItem.swift in Sources */,
+				1777F40B290FDACD0017FD80 /* Ticket.swift in Sources */,
 				17BB2B23290E46BB00A30BB6 /* HomeView.swift in Sources */,
 				17E5A4D22910C0B300AEBA65 /* RefreshTokenResponse.swift in Sources */,
 				17BB2B36290E560E00A30BB6 /* WelcomeView.swift in Sources */,
@@ -243,7 +243,7 @@
 				1777F409290FBF190017FD80 /* TicketCardView.swift in Sources */,
 				177FAEDC29124A42009A0121 /* TicketDetailView.swift in Sources */,
 				17BB2B32290E493600A30BB6 /* TicketsView.swift in Sources */,
-				177C85C1290FAF0D0064259A /* StoreItem.swift in Sources */,
+				177C85C1290FAF0D0064259A /* Store.swift in Sources */,
 				17BB2B21290E46BB00A30BB6 /* iqueApp.swift in Sources */,
 				17BB2B46290E6DC800A30BB6 /* StoreDetailView.swift in Sources */,
 				17BB2B34290E494B00A30BB6 /* MeView.swift in Sources */,

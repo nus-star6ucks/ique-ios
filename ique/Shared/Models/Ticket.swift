@@ -18,3 +18,14 @@ struct TicketItem: Codable {
     var storeId: Int
     var ticketId: Int
 }
+
+struct TicketDetail: Codable {
+    var customerId: Int
+    var endTime: Date
+    var queueInfo: QueueInfo
+    var queueNumber: Int
+    var startTime: Date
+    var status: String
+    var storeId: Int
+    var id: Int
+}
