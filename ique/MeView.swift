@@ -7,8 +7,13 @@
 
 import SwiftUI
 import Alamofire
+import KeychainSwift
+import SwiftUIRouter
 
 struct MeView: View {
+    
+    @EnvironmentObject private var navigator: Navigator
+    
     var body: some View {
         VStack {
              VStack(alignment: .leading) {
@@ -31,36 +36,20 @@ struct MeView: View {
              .padding()
             List {
                 HStack(alignment: .bottom) {
-//                    Image(systemName: "heart")
                     Text("Rate Us")
                 }
                 HStack {
-//                    Image(systemName: "xmark")
-                    Text("Delete Account")
-                }
-                HStack {
-//                    Image(systemName: "xmark")
-                    Text("Logout").onAppear {
-                        print("donow")
-
-        //                Task {
-        //                    print("donow")
-        //                    AF
-        //                        .request("https://ique.vercel.app/api/users/login", method: .post, parameters: [
-        //                            "username": "wwy701",
-        //                            "password": "991007"
-        //                        ], encoder: JSONParameterEncoder.default).response {
-        //                            response in
-        //                            debugPrint(response)
-        //                        }
-        //                }
-                    
+                    Text("Logout").onTapGesture {
+                        let keychain = KeychainSwift()
+                        keychain.delete("user")
+                        keychain.delete("token")
+                        
+                        navigator.navigate("auth", replace: true)
                     }
                 }
             }
             .listStyle(InsetGroupedListStyle())
             .navigationBarTitle("Profile")
-  
         }
     }
 }

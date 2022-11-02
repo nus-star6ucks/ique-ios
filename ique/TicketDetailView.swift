@@ -169,11 +169,15 @@ struct TicketDetailView: View {
                 Spacer()
             }.onAppear {
                 Task {
-                    let ticket = try await getTicketDetail(ticketId: ticketId)
-                    self.ticket = ticket
-                    
-                    let store = try await getStoreDetail(storeId: String(ticket.storeId))
-                    self.store = store
+                    do {
+                        let ticket = try await getTicketDetail(ticketId: ticketId)
+                        self.ticket = ticket
+                        
+                        let store = try await getStoreDetail(storeId: String(ticket.storeId))
+                        self.store = store
+                    } catch {
+                        navigator.navigate("auth", replace: true)
+                    }
                 }
             }
             Spacer()

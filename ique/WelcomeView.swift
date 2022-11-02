@@ -121,20 +121,24 @@ struct WelcomeView: View {
                         return
                     }
                     Task {
-                        let loginResponse = try await login(username: username, password: password)
-                        
-                        let keychain = KeychainSwift()
-                        keychain.set(loginResponse.token, forKey: "token", withAccess: .accessibleWhenUnlocked)
-                        
-                        let userResponse = try await getUser()
-                        let jsonUserData = try JSONEncoder().encode(userResponse)
-                        
-                        keychain.set(String(data: jsonUserData, encoding: .utf8)!, forKey: "user", withAccess: .accessibleWhenUnlocked)
-                        
-                        alertManager.show(dismiss: .success(message: "Welcome Back!"))
-                        
-                        username = ""
-                        password = ""
+                        do {
+                            let loginResponse = try await login(username: username, password: password)
+                            
+                            let keychain = KeychainSwift()
+                            keychain.set(loginResponse.token, forKey: "token", withAccess: .accessibleWhenUnlocked)
+                            
+                            let userResponse = try await getUser()
+                            let jsonUserData = try JSONEncoder().encode(userResponse)
+                            
+                            keychain.set(String(data: jsonUserData, encoding: .utf8)!, forKey: "user", withAccess: .accessibleWhenUnlocked)
+                            
+                            alertManager.show(dismiss: .success(message: "Welcome Back!"))
+                            
+                            username = ""
+                            password = ""
+                        } catch {
+                            debugPrint(error)
+                        }
                     }
                 })
             ])

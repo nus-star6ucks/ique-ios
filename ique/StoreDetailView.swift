@@ -217,11 +217,15 @@ struct StoreDetailView: View {
                     Spacer()
                 }.onAppear {
                     Task {
-                        let store = try await getStoreDetail(storeId: storeId)
-                        self.store = store
-                        
-                        let tickets = try await getTickets()
-                        self.tickets = tickets
+                        do {
+                            let store = try await getStoreDetail(storeId: storeId)
+                            self.store = store
+                            
+                            let tickets = try await getTickets()
+                            self.tickets = tickets
+                        } catch {
+                            navigator.navigate("auth", replace: true)
+                        }
                     }
                 }.uses(alertManager)
             }.ignoresSafeArea()

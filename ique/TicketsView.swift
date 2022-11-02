@@ -36,11 +36,15 @@ struct TicketsView: View {
                         .padding(.top, 36)
                         .onAppear {
                             Task {
-                                let stores = try await getStores()
-                                self.stores = stores
-                                
-                                let tickets = try await getTickets()
-                                self.tickets = tickets
+                                do {
+                                    let stores = try await getStores()
+                                    self.stores = stores
+                                    
+                                    let tickets = try await getTickets()
+                                    self.tickets = tickets
+                                } catch {
+                                    navigator.navigate("auth", replace: true)
+                                }
                             }
                         }
                         
