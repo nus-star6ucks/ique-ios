@@ -28,7 +28,9 @@ struct WebView : UIViewRepresentable {
 struct WelcomeView: View {
     @State private var username: String = ""
     @State private var password: String = ""
+    
     @StateObject var customAlertManager = CustomAlertManager()
+    @StateObject var alertManager = AlertManager()
     
     @State var showRegisterWebView = false
     
@@ -100,7 +102,9 @@ struct WelcomeView: View {
                     .padding(.vertical)
 
                 }.padding()
-            }.customAlert(manager: customAlertManager, content: {
+            }
+            .uses(alertManager)
+            .customAlert(manager: customAlertManager, content: {
                 VStack {
                     Text("Continue with Account").bold().padding(.bottom)
                     TextField("Username", text: $username).textFieldStyle(RoundedBorderTextFieldStyle()).padding(.bottom, 1)
@@ -117,7 +121,6 @@ struct WelcomeView: View {
                         return
                     }
                     Task {
-//
                         let loginResponse = try await login(username: username, password: password)
                         
                         let keychain = KeychainSwift()
@@ -128,7 +131,8 @@ struct WelcomeView: View {
                         
                         keychain.set(String(data: jsonUserData, encoding: .utf8)!, forKey: "user", withAccess: .accessibleWhenUnlocked)
                         
-                        debugPrint(jsonUserData)
+                        alertManager.show(dismiss: .success(message: "Welcome Back!"))
+                        
                         username = ""
                         password = ""
                     }

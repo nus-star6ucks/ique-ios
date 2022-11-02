@@ -17,32 +17,38 @@ struct TicketsView: View {
     @State var stores: [StoreItem] = []
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack {
-                ForEach(tickets, id: \.ticketId) { ticket in
-                    if let store = stores.first(where: {$0.id == ticket.storeId}) {
-                        TicketCardView(imageUrl: store.resources.imageUrl, title: String(ticket.queueNumber) + " - " + ticket.seatType.name, description: store.name)
-                    } else {
+        NavigationView {
+            ZStack {
+                Color.gray.opacity(0.06).edgesIgnoringSafeArea(.all)
+                ScrollView(showsIndicators: false) {
+                    VStack {
+                        ForEach(tickets, id: \.ticketId) { ticket in
+                            if let store = stores.first(where: {$0.id == ticket.storeId}) {
+                                TicketCardView(imageUrl: store.resources.imageUrl, title: String(ticket.queueNumber) + " - " + ticket.seatType.name, description: store.name)
+                            } else {
+                            }
+                        }
+                    }
+                    .padding(.top, 36)
+                    .onAppear {
+                        Task {
+                            let stores = try await getStores()
+                            self.stores = stores
+                            
+                            let tickets = try await getTickets()
+                            self.tickets = tickets
+                        }
                     }
                 }
-            }.onAppear {
-                Task {
-                    let stores = try await getStores()
-                    self.stores = stores
-                    
-                    let tickets = try await getTickets()
-                    self.tickets = tickets
-                }
+                .navigationTitle(Text("Tickets"))
             }
-            Spacer()
-                .frame(height: 108)
-                .clipped()
+
         }
     }
 }
 
-//struct TicketsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TicketsView()
-//    }
-//}
+struct TicketsView_Previews: PreviewProvider {
+    static var previews: some View {
+        TicketsView()
+    }
+}

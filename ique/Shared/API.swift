@@ -9,6 +9,7 @@ import Foundation
 import KeychainSwift
 import Alamofire
 
+var token: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpcXVldWUiLCJpc3MiOiJ1bXMiLCJ1c2VyVHlwZSI6ImN1c3RvbWVyIiwiZXhwIjoxNjY3MzgzNjM1LCJpYXQiOjE2NjczNzgyMzUsInVzZXJJZCI6MzI1LCJqdGkiOiIyZDQ1MTI4OS1hYTYzLTRhOTEtYjVlYy03MjdjY2ZmNWIwYzEiLCJ1c2VybmFtZSI6InBjZG90ZmFuIn0.Gfo0yHx6-dH4AaZW9RCKvZchwK8zun83zQukb21hzjA"
 
 func getStores() async throws -> [StoreItem] {
     return try await AF
@@ -23,11 +24,11 @@ func getStores() async throws -> [StoreItem] {
 
 
 func getTickets() async throws -> [TicketItem] {
-    let keychain = KeychainSwift()
-    let token = keychain.get("token")!
+//    let keychain = KeychainSwift()
+//    let token = keychain.get("token")!
     
     return try await AF
-        .request("https://ique.vercel.app/api/queues/tickets?userId=292",
+        .request("https://ique.vercel.app/api/queues/tickets?userId=325",
                  method: .get,
                  headers: [
             "Content-Type": "application/json",
@@ -39,8 +40,8 @@ func getTickets() async throws -> [TicketItem] {
 
 
 func getUser() async throws -> UserResponse {
-    let keychain = KeychainSwift()
-    let token = keychain.get("token")!
+//    let keychain = KeychainSwift()
+//    let token = keychain.get("token")!
     
     return try await AF
         .request("https://ique.vercel.app/api/users",
@@ -54,8 +55,8 @@ func getUser() async throws -> UserResponse {
 }
 
 func refreshToken() async throws -> RefreshTokenResponse {
-    let keychain = KeychainSwift()
-    let token = keychain.get("token")!
+//    let keychain = KeychainSwift()
+//    let token = keychain.get("token")!
     
     return try await AF
         .request("https://ique.vercel.app/api/users/refresh",
@@ -72,8 +73,8 @@ func refreshToken() async throws -> RefreshTokenResponse {
 
 
 func getStoreDetail(storeId: Int) async throws -> StoreDetail {
-    let keychain = KeychainSwift()
-    let token = keychain.get("token")!
+//    let keychain = KeychainSwift()
+//    let token = keychain.get("token")!
 
     return try await AF
         .request("https://ique.vercel.app/api/stores/" + String(storeId),

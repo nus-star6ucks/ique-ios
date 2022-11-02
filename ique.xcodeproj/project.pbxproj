@@ -15,6 +15,7 @@
 		1777F415290FF7ED0017FD80 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F414290FF7ED0017FD80 /* LoginResponse.swift */; };
 		177C85C1290FAF0D0064259A /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177C85C0290FAF0D0064259A /* StoreItem.swift */; };
 		177D355E29117860001F7A1F /* SwiftUIRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 177D355D29117860001F7A1F /* SwiftUIRouter */; };
+		177FAEDC29124A42009A0121 /* TicketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177FAEDB29124A42009A0121 /* TicketDetailView.swift */; };
 		17BB2B21290E46BB00A30BB6 /* iqueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BB2B20290E46BB00A30BB6 /* iqueApp.swift */; };
 		17BB2B23290E46BB00A30BB6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BB2B22290E46BB00A30BB6 /* HomeView.swift */; };
 		17BB2B25290E46BC00A30BB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17BB2B24290E46BC00A30BB6 /* Assets.xcassets */; };
@@ -30,24 +31,6 @@
 		17D5C2B5291009CC008EBC1C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D5C2B4291009CC008EBC1C /* API.swift */; };
 		17E5A4D02910C00B00AEBA65 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5A4CF2910C00B00AEBA65 /* UserResponse.swift */; };
 		17E5A4D22910C0B300AEBA65 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5A4D12910C0B300AEBA65 /* RefreshTokenResponse.swift */; };
-		17E5A5D82911302600AEBA65 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5C52911302500AEBA65 /* Colors.xcassets */; };
-		17E5A5D92911302600AEBA65 /* Bookmarks.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5C72911302500AEBA65 /* Bookmarks.xcassets */; };
-		17E5A5DA2911302600AEBA65 /* Course.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5C82911302500AEBA65 /* Course.xcassets */; };
-		17E5A5DB2911302600AEBA65 /* Certificate.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5C92911302500AEBA65 /* Certificate.xcassets */; };
-		17E5A5DC2911302600AEBA65 /* Achievement.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5CA2911302500AEBA65 /* Achievement.xcassets */; };
-		17E5A5DD2911302600AEBA65 /* Launch.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5CB2911302500AEBA65 /* Launch.xcassets */; };
-		17E5A5DE2911302600AEBA65 /* MyCourses.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5CC2911302500AEBA65 /* MyCourses.xcassets */; };
-		17E5A5DF2911302600AEBA65 /* Search.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5CD2911302500AEBA65 /* Search.xcassets */; };
-		17E5A5E02911302600AEBA65 /* InstructorProfile.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5CE2911302500AEBA65 /* InstructorProfile.xcassets */; };
-		17E5A5E12911302600AEBA65 /* EditProfile.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5CF2911302500AEBA65 /* EditProfile.xcassets */; };
-		17E5A5E22911302600AEBA65 /* Reviews.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5D02911302500AEBA65 /* Reviews.xcassets */; };
-		17E5A5E32911302600AEBA65 /* Explore.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5D12911302500AEBA65 /* Explore.xcassets */; };
-		17E5A5E42911302600AEBA65 /* CoursePreview.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5D22911302500AEBA65 /* CoursePreview.xcassets */; };
-		17E5A5E52911302600AEBA65 /* CourseCategory.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5D32911302500AEBA65 /* CourseCategory.xcassets */; };
-		17E5A5E62911302600AEBA65 /* CurrentUser.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5D42911302500AEBA65 /* CurrentUser.xcassets */; };
-		17E5A5E72911302600AEBA65 /* Profile.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5D52911302500AEBA65 /* Profile.xcassets */; };
-		17E5A5E82911302600AEBA65 /* Onboarding.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5D62911302500AEBA65 /* Onboarding.xcassets */; };
-		17E5A5E92911302600AEBA65 /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A5D72911302500AEBA65 /* App.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +39,7 @@
 		1777F40A290FDACD0017FD80 /* TicketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketItem.swift; sourceTree = "<group>"; };
 		1777F414290FF7ED0017FD80 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		177C85C0290FAF0D0064259A /* StoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItem.swift; sourceTree = "<group>"; };
+		177FAEDB29124A42009A0121 /* TicketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailView.swift; sourceTree = "<group>"; };
 		17BB2B1D290E46BB00A30BB6 /* ique.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ique.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17BB2B20290E46BB00A30BB6 /* iqueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iqueApp.swift; sourceTree = "<group>"; };
 		17BB2B22290E46BB00A30BB6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -71,24 +55,6 @@
 		17D5C2B4291009CC008EBC1C /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		17E5A4CF2910C00B00AEBA65 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		17E5A4D12910C0B300AEBA65 /* RefreshTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenResponse.swift; sourceTree = "<group>"; };
-		17E5A5C52911302500AEBA65 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		17E5A5C72911302500AEBA65 /* Bookmarks.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Bookmarks.xcassets; sourceTree = "<group>"; };
-		17E5A5C82911302500AEBA65 /* Course.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Course.xcassets; sourceTree = "<group>"; };
-		17E5A5C92911302500AEBA65 /* Certificate.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Certificate.xcassets; sourceTree = "<group>"; };
-		17E5A5CA2911302500AEBA65 /* Achievement.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Achievement.xcassets; sourceTree = "<group>"; };
-		17E5A5CB2911302500AEBA65 /* Launch.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Launch.xcassets; sourceTree = "<group>"; };
-		17E5A5CC2911302500AEBA65 /* MyCourses.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MyCourses.xcassets; sourceTree = "<group>"; };
-		17E5A5CD2911302500AEBA65 /* Search.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Search.xcassets; sourceTree = "<group>"; };
-		17E5A5CE2911302500AEBA65 /* InstructorProfile.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = InstructorProfile.xcassets; sourceTree = "<group>"; };
-		17E5A5CF2911302500AEBA65 /* EditProfile.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = EditProfile.xcassets; sourceTree = "<group>"; };
-		17E5A5D02911302500AEBA65 /* Reviews.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Reviews.xcassets; sourceTree = "<group>"; };
-		17E5A5D12911302500AEBA65 /* Explore.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Explore.xcassets; sourceTree = "<group>"; };
-		17E5A5D22911302500AEBA65 /* CoursePreview.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CoursePreview.xcassets; sourceTree = "<group>"; };
-		17E5A5D32911302500AEBA65 /* CourseCategory.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CourseCategory.xcassets; sourceTree = "<group>"; };
-		17E5A5D42911302500AEBA65 /* CurrentUser.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CurrentUser.xcassets; sourceTree = "<group>"; };
-		17E5A5D52911302500AEBA65 /* Profile.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Profile.xcassets; sourceTree = "<group>"; };
-		17E5A5D62911302500AEBA65 /* Onboarding.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Onboarding.xcassets; sourceTree = "<group>"; };
-		17E5A5D72911302500AEBA65 /* App.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = App.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,9 +122,9 @@
 				17BB2B33290E494B00A30BB6 /* MeView.swift */,
 				17BB2B35290E560E00A30BB6 /* WelcomeView.swift */,
 				17BB2B31290E493600A30BB6 /* TicketsView.swift */,
+				177FAEDB29124A42009A0121 /* TicketDetailView.swift */,
 				17BB2B22290E46BB00A30BB6 /* HomeView.swift */,
 				17BB2B24290E46BC00A30BB6 /* Assets.xcassets */,
-				17E5A5C42911302500AEBA65 /* Assets */,
 				17BB2B26290E46BC00A30BB6 /* ique.entitlements */,
 				17BB2B27290E46BC00A30BB6 /* Preview Content */,
 			);
@@ -171,39 +137,6 @@
 				17BB2B28290E46BC00A30BB6 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		17E5A5C42911302500AEBA65 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				17E5A5C52911302500AEBA65 /* Colors.xcassets */,
-				17E5A5C62911302500AEBA65 /* Images */,
-				17E5A5D72911302500AEBA65 /* App.xcassets */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
-		17E5A5C62911302500AEBA65 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				17E5A5C72911302500AEBA65 /* Bookmarks.xcassets */,
-				17E5A5C82911302500AEBA65 /* Course.xcassets */,
-				17E5A5C92911302500AEBA65 /* Certificate.xcassets */,
-				17E5A5CA2911302500AEBA65 /* Achievement.xcassets */,
-				17E5A5CB2911302500AEBA65 /* Launch.xcassets */,
-				17E5A5CC2911302500AEBA65 /* MyCourses.xcassets */,
-				17E5A5CD2911302500AEBA65 /* Search.xcassets */,
-				17E5A5CE2911302500AEBA65 /* InstructorProfile.xcassets */,
-				17E5A5CF2911302500AEBA65 /* EditProfile.xcassets */,
-				17E5A5D02911302500AEBA65 /* Reviews.xcassets */,
-				17E5A5D12911302500AEBA65 /* Explore.xcassets */,
-				17E5A5D22911302500AEBA65 /* CoursePreview.xcassets */,
-				17E5A5D32911302500AEBA65 /* CourseCategory.xcassets */,
-				17E5A5D42911302500AEBA65 /* CurrentUser.xcassets */,
-				17E5A5D52911302500AEBA65 /* Profile.xcassets */,
-				17E5A5D62911302500AEBA65 /* Onboarding.xcassets */,
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		17E5A6A52911359B00AEBA65 /* Components */ = {
@@ -285,26 +218,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17E5A5D82911302600AEBA65 /* Colors.xcassets in Resources */,
-				17E5A5E22911302600AEBA65 /* Reviews.xcassets in Resources */,
-				17E5A5E52911302600AEBA65 /* CourseCategory.xcassets in Resources */,
 				17BB2B29290E46BC00A30BB6 /* Preview Assets.xcassets in Resources */,
-				17E5A5E42911302600AEBA65 /* CoursePreview.xcassets in Resources */,
-				17E5A5DA2911302600AEBA65 /* Course.xcassets in Resources */,
-				17E5A5E62911302600AEBA65 /* CurrentUser.xcassets in Resources */,
 				17BB2B25290E46BC00A30BB6 /* Assets.xcassets in Resources */,
-				17E5A5D92911302600AEBA65 /* Bookmarks.xcassets in Resources */,
-				17E5A5DC2911302600AEBA65 /* Achievement.xcassets in Resources */,
-				17E5A5E32911302600AEBA65 /* Explore.xcassets in Resources */,
-				17E5A5DD2911302600AEBA65 /* Launch.xcassets in Resources */,
-				17E5A5DB2911302600AEBA65 /* Certificate.xcassets in Resources */,
-				17E5A5DE2911302600AEBA65 /* MyCourses.xcassets in Resources */,
-				17E5A5E02911302600AEBA65 /* InstructorProfile.xcassets in Resources */,
-				17E5A5E82911302600AEBA65 /* Onboarding.xcassets in Resources */,
-				17E5A5DF2911302600AEBA65 /* Search.xcassets in Resources */,
-				17E5A5E92911302600AEBA65 /* App.xcassets in Resources */,
-				17E5A5E12911302600AEBA65 /* EditProfile.xcassets in Resources */,
-				17E5A5E72911302600AEBA65 /* Profile.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +241,7 @@
 				17D5C2B5291009CC008EBC1C /* API.swift in Sources */,
 				1777F415290FF7ED0017FD80 /* LoginResponse.swift in Sources */,
 				1777F409290FBF190017FD80 /* TicketCardView.swift in Sources */,
+				177FAEDC29124A42009A0121 /* TicketDetailView.swift in Sources */,
 				17BB2B32290E493600A30BB6 /* TicketsView.swift in Sources */,
 				177C85C1290FAF0D0064259A /* StoreItem.swift in Sources */,
 				17BB2B21290E46BB00A30BB6 /* iqueApp.swift in Sources */,
