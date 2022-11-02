@@ -66,7 +66,9 @@ struct StoreDetailView: View {
                     .mask {
                         Rectangle()
                     }
+                    .cornerRadius(12)
                     .ignoresSafeArea()
+                    
                     
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(alignment: .firstTextBaseline) {
@@ -80,6 +82,7 @@ struct StoreDetailView: View {
                         }
                         .font(.system(size: 16, weight: .regular))
                     }
+                    .padding(.top, -24)
                 }
                 .padding(.horizontal, 24)
                 

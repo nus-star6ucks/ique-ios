@@ -54,6 +54,8 @@ struct RootView: View {
 private struct RootRoutes: View {
     var body: some View {
         SwitchRoutes {
+            Route("/", content: MainView())
+            
             Route("auth", content: WelcomeView())
             
             Route("tickets", content: TicketsView())
