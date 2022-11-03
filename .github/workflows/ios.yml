@@ -12,6 +12,8 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
+        swift:
+          - 5.7
         platform:
           - iOS
     steps:
