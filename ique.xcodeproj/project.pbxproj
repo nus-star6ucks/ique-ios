@@ -18,7 +18,6 @@
 		177FAEDC29124A42009A0121 /* TicketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177FAEDB29124A42009A0121 /* TicketDetailView.swift */; };
 		17AD01632912C97700D9C4A9 /* QueueResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AD01622912C97700D9C4A9 /* QueueResponse.swift */; };
 		17AD01692913792B00D9C4A9 /* SimpleKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = 17AD01682913792B00D9C4A9 /* SimpleKeychain */; };
-		17AD017629139B1100D9C4A9 /* Argon2Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 17AD017529139B1100D9C4A9 /* Argon2Swift */; };
 		17AD017C29139F0600D9C4A9 /* EasySkeleton in Frameworks */ = {isa = PBXBuildFile; productRef = 17AD017B29139F0600D9C4A9 /* EasySkeleton */; };
 		17AD017F2913A39900D9C4A9 /* DefaultCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 17AD017E2913A39900D9C4A9 /* DefaultCodable */; };
 		17BB2B21290E46BB00A30BB6 /* iqueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BB2B20290E46BB00A30BB6 /* iqueApp.swift */; };
@@ -72,7 +71,6 @@
 				17AD017C29139F0600D9C4A9 /* EasySkeleton in Frameworks */,
 				17AD01692913792B00D9C4A9 /* SimpleKeychain in Frameworks */,
 				17BB2B3D290E649000A30BB6 /* Alamofire in Frameworks */,
-				17AD017629139B1100D9C4A9 /* Argon2Swift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,7 +173,6 @@
 				1777F412290FE94D0017FD80 /* AlertKit */,
 				177D355D29117860001F7A1F /* SwiftUIRouter */,
 				17AD01682913792B00D9C4A9 /* SimpleKeychain */,
-				17AD017529139B1100D9C4A9 /* Argon2Swift */,
 				17AD017B29139F0600D9C4A9 /* EasySkeleton */,
 				17AD017E2913A39900D9C4A9 /* DefaultCodable */,
 			);
@@ -212,7 +209,6 @@
 				1777F411290FE94D0017FD80 /* XCRemoteSwiftPackageReference "AlertKit" */,
 				177D355C29117860001F7A1F /* XCRemoteSwiftPackageReference "SwiftUIRouter" */,
 				17AD01672913792B00D9C4A9 /* XCRemoteSwiftPackageReference "SimpleKeychain" */,
-				17AD017429139B1100D9C4A9 /* XCRemoteSwiftPackageReference "Argon2Swift" */,
 				17AD017A29139F0600D9C4A9 /* XCRemoteSwiftPackageReference "EasySkeleton" */,
 				17AD017D2913A39900D9C4A9 /* XCRemoteSwiftPackageReference "DefaultCodable" */,
 			);
@@ -393,6 +389,8 @@
 				DEVELOPMENT_TEAM = 86ZUTDK3RX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = iQue;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -432,6 +430,8 @@
 				DEVELOPMENT_TEAM = 86ZUTDK3RX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = iQue;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -507,14 +507,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		17AD017429139B1100D9C4A9 /* XCRemoteSwiftPackageReference "Argon2Swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tmthecoder/Argon2Swift.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		17AD017A29139F0600D9C4A9 /* XCRemoteSwiftPackageReference "EasySkeleton" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SpectralDragon/EasySkeleton.git";
@@ -556,11 +548,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 17AD01672913792B00D9C4A9 /* XCRemoteSwiftPackageReference "SimpleKeychain" */;
 			productName = SimpleKeychain;
-		};
-		17AD017529139B1100D9C4A9 /* Argon2Swift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 17AD017429139B1100D9C4A9 /* XCRemoteSwiftPackageReference "Argon2Swift" */;
-			productName = Argon2Swift;
 		};
 		17AD017B29139F0600D9C4A9 /* EasySkeleton */ = {
 			isa = XCSwiftPackageProductDependency;
