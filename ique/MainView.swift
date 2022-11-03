@@ -19,10 +19,6 @@ struct MainView: View {
                 .tabItem {
                     Label("Tickets", systemImage: "note")
                 }
-            MeView()
-                .tabItem {
-                    Label("Me", systemImage: "person")
-                }
         }
     }
 }

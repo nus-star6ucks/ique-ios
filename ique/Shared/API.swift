@@ -84,10 +84,11 @@ func getTickets() async throws -> [TicketItem] {
         throw APIRequestError.UserNotLoggedIn
     }
     
+    let user = try getUserFromKeyChain()
     let token = try keychain.string(forKey: "token")
     
     return try await AF
-        .request("https://ique.vercel.app/api/queues/tickets?userId=325",
+        .request("https://ique.vercel.app/api/queues/tickets?userId=\(user.id)",
                  method: .get,
                  headers: [
             "Content-Type": "application/json",

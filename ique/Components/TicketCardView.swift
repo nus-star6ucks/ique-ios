@@ -85,8 +85,6 @@ struct TicketCardView: View {
 //                Spacer()
 //            }
         }
-        .padding(16)
-        .frame(height: 30)
     }
 }
 

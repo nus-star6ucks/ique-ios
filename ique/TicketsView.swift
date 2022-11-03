@@ -25,6 +25,8 @@ struct TicketsView: View {
                         ForEach(tickets, id: \.ticketId) { ticket in
                             if let store = stores.first(where: {$0.id == ticket.storeId}) {
                                 TicketCardView(imageUrl: store.resources.imageUrl, title: String(ticket.queueNumber) + " - " + ticket.seatType.name, description: store.name, footNote: ticket.startTime.timeAgoDisplay())
+                                    .padding(.bottom, 8)
+                                    .padding(.horizontal)
                                     .onTapGesture {
                                         navigator.navigate("/tickets/" + String(ticket.ticketId))
                                     }
@@ -40,6 +42,7 @@ struct TicketsView: View {
                                     self.stores = stores
                                     
                                     let tickets = try await getTickets()
+                                    
                                     self.tickets = tickets
                                 } catch {
                                     navigator.navigate("/auth", replace: true)

@@ -64,8 +64,6 @@ private struct RootRoutes: View {
                 TicketDetailView(ticketId: info.parameters["id"]!)
             }
             
-            Route("me", content: MeView())
-            
             Route("stores/:id") { info in
                 StoreDetailView(storeId: info.parameters["id"]!)
             }
