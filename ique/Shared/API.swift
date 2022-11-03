@@ -6,14 +6,16 @@
 //
 
 import Foundation
-import KeychainSwift
 import Alamofire
 import SwiftUIRouter
+import SimpleKeychain
 
 enum APIRequestError: Error {
     case UserNotLoggedIn
     case UserDataNotFound
+    case UserFailedFetch
 }
+
 
 class AuthRequestInterceptor: RequestInterceptor {
     func adapt(_ urlRequest: URLRequest, for session: Alamofire.Session, completion: @escaping (Swift.Result<URLRequest, Swift.Error>) -> Void) {}
@@ -26,16 +28,43 @@ class AuthRequestInterceptor: RequestInterceptor {
     ) {
         let response = request.task?.response as? HTTPURLResponse
         if (response?.statusCode == 401) {
-          let keychain = KeychainSwift()
-          keychain.delete("user")
-          keychain.delete("token")
+            do {
+                try keychain.deleteItem(forKey: "user")
+                try keychain.deleteItem(forKey: "token")
+            } catch {
+                
+            }
         }
         return completion(.doNotRetry)
     }
 }
 
 let interceptor = AuthRequestInterceptor()
-let keychain = KeychainSwift()
+
+let keychain = SimpleKeychain(service: "com.star6ucks.ique")
+                              
+                              
+func getUserFromKeyChain() throws -> UserResponse {
+    guard try keychain.hasItem(forKey: "token") else {
+        throw APIRequestError.UserNotLoggedIn
+    }
+
+    guard try keychain.hasItem(forKey: "user") else {
+        throw APIRequestError.UserDataNotFound
+    }
+
+    do {
+        let userJsonString = try keychain.string(forKey: "user")
+        let userData = try JSONDecoder().decode(UserResponse.self, from: userJsonString.data(using: .utf8)!)
+        
+        return userData
+    } catch {
+        try keychain.deleteItem(forKey: "token")
+        try keychain.deleteItem(forKey: "user")
+    }
+    
+    throw APIRequestError.UserFailedFetch
+}
 
 
 func getStores() async throws -> [StoreItem] {
@@ -51,18 +80,19 @@ func getStores() async throws -> [StoreItem] {
 
 
 func getTickets() async throws -> [TicketItem] {
-    let token = keychain.get("token")
     
-    guard token != nil else {
+    guard try keychain.hasItem(forKey: "token") else {
         throw APIRequestError.UserNotLoggedIn
     }
+    
+    let token = try keychain.string(forKey: "token")
     
     return try await AF
         .request("https://ique.vercel.app/api/queues/tickets?userId=325",
                  method: .get,
                  headers: [
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + token!
+            "Authorization": "Bearer " + token
         ])
         .validate(statusCode: 200..<300)
         .serializingDecodable([TicketItem].self).value
@@ -70,36 +100,39 @@ func getTickets() async throws -> [TicketItem] {
 
 
 func getUser() async throws -> UserResponse {
-    let token = keychain.get("token")
     
-    guard token != nil else {
+    guard try keychain.hasItem(forKey: "token") else {
         throw APIRequestError.UserNotLoggedIn
     }
+    
+    let token = try keychain.string(forKey: "token")
+
     
     return try await AF
         .request("https://ique.vercel.app/api/users",
                  method: .get,
                  headers: [
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + token!
+            "Authorization": "Bearer " + token
         ])
         .validate(statusCode: 200..<300)
         .serializingDecodable(UserResponse.self).value
 }
 
 func refreshToken() async throws -> RefreshTokenResponse {
-    let token = keychain.get("token")
     
-    guard token != nil else {
+    guard try keychain.hasItem(forKey: "token") else {
         throw APIRequestError.UserNotLoggedIn
     }
     
+    let token = try keychain.string(forKey: "token")
+
     return try await AF
         .request("https://ique.vercel.app/api/users/refresh",
                  method: .get,
                  headers: [
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + token!
+            "Authorization": "Bearer " + token
         ])
         .validate(statusCode: 200..<300)
         .serializingDecodable(RefreshTokenResponse.self).value
@@ -107,18 +140,20 @@ func refreshToken() async throws -> RefreshTokenResponse {
 
 
 func getStoreDetail(storeId: String) async throws -> StoreDetail {
-    let token = keychain.get("token")
-    
-    guard token != nil else {
+
+    guard try keychain.hasItem(forKey: "token") else {
         throw APIRequestError.UserNotLoggedIn
     }
+    
+    let token = try keychain.string(forKey: "token")
+
 
     return try await AF
         .request("https://ique.vercel.app/api/stores/" + String(storeId),
                  method: .get,
                  headers: [
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + token!
+            "Authorization": "Bearer " + token
         ])
         .validate(statusCode: 200..<300)
         .serializingDecodable(StoreDetail.self).value
@@ -126,53 +161,46 @@ func getStoreDetail(storeId: String) async throws -> StoreDetail {
 
 
 func getTicketDetail(ticketId: String) async throws -> TicketDetail {
-    let token = keychain.get("token")
-    
-    guard token != nil else {
+
+    guard try keychain.hasItem(forKey: "token") else {
         throw APIRequestError.UserNotLoggedIn
     }
+    
+    let token = try keychain.string(forKey: "token")
+
 
     return try await AF
         .request("https://ique.vercel.app/api/queues/tickets/" + String(ticketId),
                  method: .get,
                  headers: [
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + token!
+            "Authorization": "Bearer " + token
         ])
         .validate(statusCode: 200..<300)
         .serializingDecodable(TicketDetail.self).value
 }
 
 func queue(queueId: Int, storeId: Int) async throws -> QueueReponse {
-    let token = keychain.get("token")
-    
-    guard token != nil else {
-        throw APIRequestError.UserNotLoggedIn
-    }
-    
-    let userJsonString = keychain.getData("user")
-    
-    guard userJsonString != nil else {
-        throw APIRequestError.UserDataNotFound
-    }
-    
-    let userData = try JSONDecoder().decode(UserResponse.self, from: userJsonString!)
+    do {
+        let user = try getUserFromKeyChain()        
+        let token = try keychain.string(forKey: "token")
 
-    let customerId = userData.id
-    
-    return try await AF
-        .request("https://ique.vercel.app/api/queues/tickets", method: .post,
-                 parameters: [
-            "queueId": queueId,
-            "customerId": customerId,
-            "storeId": storeId
-        ],
-                 headers: [
-                     "Content-Type": "application/json",
-                     "Authorization": "Bearer " + token!
-                 ])
-        .validate(statusCode: 200..<300)
-        .serializingDecodable(QueueReponse.self).value
+        return try await AF
+            .request("https://ique.vercel.app/api/queues/tickets", method: .post,
+                     parameters: [
+                "queueId": queueId,
+                "customerId": user.id,
+                "storeId": storeId
+            ],
+                     headers: [
+                         "Content-Type": "application/json",
+                         "Authorization": "Bearer " + token
+                     ])
+            .validate(statusCode: 200..<300)
+            .serializingDecodable(QueueReponse.self).value
+    } catch {
+        throw APIRequestError.UserFailedFetch
+    }
 }
 
 

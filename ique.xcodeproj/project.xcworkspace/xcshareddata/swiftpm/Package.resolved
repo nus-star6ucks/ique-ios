@@ -19,12 +19,12 @@
       }
     },
     {
-      "identity" : "keychain-swift",
+      "identity" : "simplekeychain",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/evgenyneu/keychain-swift.git",
+      "location" : "https://github.com/auth0/SimpleKeychain",
       "state" : {
-        "revision" : "d108a1fa6189e661f91560548ef48651ed8d93b9",
-        "version" : "20.0.0"
+        "revision" : "7f7be4a7dfc9164c2c66f95193cec9df9ac47d58",
+        "version" : "1.0.1"
       }
     },
     {

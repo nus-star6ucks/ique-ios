@@ -9,7 +9,6 @@ import SwiftUI
 import AlertKit
 import WebKit
 import Alamofire
-import KeychainSwift
 
 struct WebView : UIViewRepresentable {
     @State var url: String // 1
@@ -87,6 +86,11 @@ struct WelcomeView: View {
                                 .background(RoundedRectangle(cornerRadius: 10, style: .continuous).fill(.green.opacity(0.1)))
                             }
                             .onTapGesture {
+                                do {
+                                    debugPrint(try keychain.string(forKey: "token"))
+                                } catch {
+                                    debugPrint(error)
+                                }
                                 customAlertManager.show()
                             }
                         Button("Join Us Now!") {
@@ -123,20 +127,23 @@ struct WelcomeView: View {
                     Task {
                         do {
                             let loginResponse = try await login(username: username, password: password)
-                            
-                            let keychain = KeychainSwift()
-                            keychain.set(loginResponse.token, forKey: "token", withAccess: .accessibleWhenUnlocked)
-                            
+
+                            try keychain.set(loginResponse.token, forKey: "token")
+//
                             let userResponse = try await getUser()
                             let jsonUserData = try JSONEncoder().encode(userResponse)
-                            
-                            keychain.set(String(data: jsonUserData, encoding: .utf8)!, forKey: "user", withAccess: .accessibleWhenUnlocked)
-                            
+
+                            try keychain.set(String(data: jsonUserData, encoding: .utf8)!, forKey: "user")
+
                             alertManager.show(dismiss: .success(message: "Welcome Back!"))
-                            
+
                             username = ""
                             password = ""
                         } catch {
+                            alertManager.show(dismiss: .error(message: "User credentials are mismatched!"))
+                            username = ""
+                            password = ""
+                            
                             debugPrint(error)
                         }
                     }

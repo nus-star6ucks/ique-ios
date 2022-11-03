@@ -17,6 +17,7 @@
 		177D355E29117860001F7A1F /* SwiftUIRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 177D355D29117860001F7A1F /* SwiftUIRouter */; };
 		177FAEDC29124A42009A0121 /* TicketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177FAEDB29124A42009A0121 /* TicketDetailView.swift */; };
 		17AD01632912C97700D9C4A9 /* QueueResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AD01622912C97700D9C4A9 /* QueueResponse.swift */; };
+		17AD01692913792B00D9C4A9 /* SimpleKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = 17AD01682913792B00D9C4A9 /* SimpleKeychain */; };
 		17BB2B21290E46BB00A30BB6 /* iqueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BB2B20290E46BB00A30BB6 /* iqueApp.swift */; };
 		17BB2B23290E46BB00A30BB6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BB2B22290E46BB00A30BB6 /* HomeView.swift */; };
 		17BB2B25290E46BC00A30BB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17BB2B24290E46BC00A30BB6 /* Assets.xcassets */; };
@@ -27,7 +28,6 @@
 		17BB2B36290E560E00A30BB6 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BB2B35290E560E00A30BB6 /* WelcomeView.swift */; };
 		17BB2B3A290E633900A30BB6 /* StoreCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BB2B39290E633900A30BB6 /* StoreCardView.swift */; };
 		17BB2B3D290E649000A30BB6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 17BB2B3C290E649000A30BB6 /* Alamofire */; };
-		17BB2B40290E64D500A30BB6 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 17BB2B3F290E64D500A30BB6 /* KeychainSwift */; };
 		17BB2B46290E6DC800A30BB6 /* StoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BB2B45290E6DC800A30BB6 /* StoreDetailView.swift */; };
 		17D5C2B5291009CC008EBC1C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D5C2B4291009CC008EBC1C /* API.swift */; };
 		17E5A4D02910C00B00AEBA65 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5A4CF2910C00B00AEBA65 /* UserResponse.swift */; };
@@ -67,7 +67,7 @@
 				1712818C290F96D800E2593E /* (null) in Frameworks */,
 				177D355E29117860001F7A1F /* SwiftUIRouter in Frameworks */,
 				1777F413290FE94D0017FD80 /* AlertKit in Frameworks */,
-				17BB2B40290E64D500A30BB6 /* KeychainSwift in Frameworks */,
+				17AD01692913792B00D9C4A9 /* SimpleKeychain in Frameworks */,
 				17BB2B3D290E649000A30BB6 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,9 +169,9 @@
 			name = ique;
 			packageProductDependencies = (
 				17BB2B3C290E649000A30BB6 /* Alamofire */,
-				17BB2B3F290E64D500A30BB6 /* KeychainSwift */,
 				1777F412290FE94D0017FD80 /* AlertKit */,
 				177D355D29117860001F7A1F /* SwiftUIRouter */,
+				17AD01682913792B00D9C4A9 /* SimpleKeychain */,
 			);
 			productName = ique;
 			productReference = 17BB2B1D290E46BB00A30BB6 /* ique.app */;
@@ -203,9 +203,9 @@
 			mainGroup = 17BB2B14290E46BB00A30BB6;
 			packageReferences = (
 				17BB2B3B290E649000A30BB6 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				17BB2B3E290E64D500A30BB6 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				1777F411290FE94D0017FD80 /* XCRemoteSwiftPackageReference "AlertKit" */,
 				177D355C29117860001F7A1F /* XCRemoteSwiftPackageReference "SwiftUIRouter" */,
+				17AD01672913792B00D9C4A9 /* XCRemoteSwiftPackageReference "SimpleKeychain" */,
 			);
 			productRefGroup = 17BB2B1E290E46BB00A30BB6 /* Products */;
 			projectDirPath = "";
@@ -484,6 +484,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		17AD01672913792B00D9C4A9 /* XCRemoteSwiftPackageReference "SimpleKeychain" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/SimpleKeychain";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		17BB2B3B290E649000A30BB6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -513,15 +521,15 @@
 			package = 177D355C29117860001F7A1F /* XCRemoteSwiftPackageReference "SwiftUIRouter" */;
 			productName = SwiftUIRouter;
 		};
+		17AD01682913792B00D9C4A9 /* SimpleKeychain */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17AD01672913792B00D9C4A9 /* XCRemoteSwiftPackageReference "SimpleKeychain" */;
+			productName = SimpleKeychain;
+		};
 		17BB2B3C290E649000A30BB6 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 17BB2B3B290E649000A30BB6 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		17BB2B3F290E64D500A30BB6 /* KeychainSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 17BB2B3E290E64D500A30BB6 /* XCRemoteSwiftPackageReference "keychain-swift" */;
-			productName = KeychainSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

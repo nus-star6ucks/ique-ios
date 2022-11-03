@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Alamofire
-import KeychainSwift
 import SwiftUIRouter
 
 struct MeView: View {
@@ -40,10 +39,6 @@ struct MeView: View {
                 }
                 HStack {
                     Text("Logout").onTapGesture {
-                        let keychain = KeychainSwift()
-                        keychain.delete("user")
-                        keychain.delete("token")
-                        
                         navigator.navigate("auth", replace: true)
                     }
                 }
