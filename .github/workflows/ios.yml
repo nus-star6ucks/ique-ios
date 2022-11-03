@@ -30,5 +30,4 @@ jobs:
           action: build # default = `test`
           code-coverage: true # default = `false`
           warnings-as-errors: true # default = `false`
-          code-sign-identity: '-'
           configuration: release # no default, ie. `xcodebuild` decides itself
