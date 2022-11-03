@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,10 +19,8 @@
 		17AD01632912C97700D9C4A9 /* QueueResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AD01622912C97700D9C4A9 /* QueueResponse.swift */; };
 		17AD01692913792B00D9C4A9 /* SimpleKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = 17AD01682913792B00D9C4A9 /* SimpleKeychain */; };
 		17AD017629139B1100D9C4A9 /* Argon2Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 17AD017529139B1100D9C4A9 /* Argon2Swift */; };
-		17AD017929139D2A00D9C4A9 /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 17AD017829139D2A00D9C4A9 /* SkeletonUI */; };
 		17AD017C29139F0600D9C4A9 /* EasySkeleton in Frameworks */ = {isa = PBXBuildFile; productRef = 17AD017B29139F0600D9C4A9 /* EasySkeleton */; };
 		17AD017F2913A39900D9C4A9 /* DefaultCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 17AD017E2913A39900D9C4A9 /* DefaultCodable */; };
-		17AD01822913A94400D9C4A9 /* MHLoadingButton in Frameworks */ = {isa = PBXBuildFile; productRef = 17AD01812913A94400D9C4A9 /* MHLoadingButton */; };
 		17BB2B21290E46BB00A30BB6 /* iqueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BB2B20290E46BB00A30BB6 /* iqueApp.swift */; };
 		17BB2B23290E46BB00A30BB6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BB2B22290E46BB00A30BB6 /* HomeView.swift */; };
 		17BB2B25290E46BC00A30BB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17BB2B24290E46BC00A30BB6 /* Assets.xcassets */; };
@@ -73,8 +71,6 @@
 				1777F413290FE94D0017FD80 /* AlertKit in Frameworks */,
 				17AD017C29139F0600D9C4A9 /* EasySkeleton in Frameworks */,
 				17AD01692913792B00D9C4A9 /* SimpleKeychain in Frameworks */,
-				17AD01822913A94400D9C4A9 /* MHLoadingButton in Frameworks */,
-				17AD017929139D2A00D9C4A9 /* SkeletonUI in Frameworks */,
 				17BB2B3D290E649000A30BB6 /* Alamofire in Frameworks */,
 				17AD017629139B1100D9C4A9 /* Argon2Swift in Frameworks */,
 			);
@@ -180,10 +176,8 @@
 				177D355D29117860001F7A1F /* SwiftUIRouter */,
 				17AD01682913792B00D9C4A9 /* SimpleKeychain */,
 				17AD017529139B1100D9C4A9 /* Argon2Swift */,
-				17AD017829139D2A00D9C4A9 /* SkeletonUI */,
 				17AD017B29139F0600D9C4A9 /* EasySkeleton */,
 				17AD017E2913A39900D9C4A9 /* DefaultCodable */,
-				17AD01812913A94400D9C4A9 /* MHLoadingButton */,
 			);
 			productName = ique;
 			productReference = 17BB2B1D290E46BB00A30BB6 /* ique.app */;
@@ -205,7 +199,7 @@
 				};
 			};
 			buildConfigurationList = 17BB2B18290E46BB00A30BB6 /* Build configuration list for PBXProject "ique" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -219,10 +213,8 @@
 				177D355C29117860001F7A1F /* XCRemoteSwiftPackageReference "SwiftUIRouter" */,
 				17AD01672913792B00D9C4A9 /* XCRemoteSwiftPackageReference "SimpleKeychain" */,
 				17AD017429139B1100D9C4A9 /* XCRemoteSwiftPackageReference "Argon2Swift" */,
-				17AD017729139D2A00D9C4A9 /* XCRemoteSwiftPackageReference "SkeletonUI" */,
 				17AD017A29139F0600D9C4A9 /* XCRemoteSwiftPackageReference "EasySkeleton" */,
 				17AD017D2913A39900D9C4A9 /* XCRemoteSwiftPackageReference "DefaultCodable" */,
-				17AD01802913A94400D9C4A9 /* XCRemoteSwiftPackageReference "loading-buttons-ios" */,
 			);
 			productRefGroup = 17BB2B1E290E46BB00A30BB6 /* Products */;
 			projectDirPath = "";
@@ -323,7 +315,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -376,7 +368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -516,14 +508,6 @@
 				kind = branch;
 			};
 		};
-		17AD017729139D2A00D9C4A9 /* XCRemoteSwiftPackageReference "SkeletonUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CSolanaM/SkeletonUI.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		17AD017A29139F0600D9C4A9 /* XCRemoteSwiftPackageReference "EasySkeleton" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SpectralDragon/EasySkeleton.git";
@@ -538,14 +522,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.2.0;
-			};
-		};
-		17AD01802913A94400D9C4A9 /* XCRemoteSwiftPackageReference "loading-buttons-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/twho/loading-buttons-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.3;
 			};
 		};
 		17BB2B3B290E649000A30BB6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
@@ -579,11 +555,6 @@
 			package = 17AD017429139B1100D9C4A9 /* XCRemoteSwiftPackageReference "Argon2Swift" */;
 			productName = Argon2Swift;
 		};
-		17AD017829139D2A00D9C4A9 /* SkeletonUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 17AD017729139D2A00D9C4A9 /* XCRemoteSwiftPackageReference "SkeletonUI" */;
-			productName = SkeletonUI;
-		};
 		17AD017B29139F0600D9C4A9 /* EasySkeleton */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 17AD017A29139F0600D9C4A9 /* XCRemoteSwiftPackageReference "EasySkeleton" */;
@@ -593,11 +564,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 17AD017D2913A39900D9C4A9 /* XCRemoteSwiftPackageReference "DefaultCodable" */;
 			productName = DefaultCodable;
-		};
-		17AD01812913A94400D9C4A9 /* MHLoadingButton */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 17AD01802913A94400D9C4A9 /* XCRemoteSwiftPackageReference "loading-buttons-ios" */;
-			productName = MHLoadingButton;
 		};
 		17BB2B3C290E649000A30BB6 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
