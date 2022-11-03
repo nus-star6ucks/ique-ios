@@ -61,9 +61,8 @@ func getUserFromKeyChain() throws -> UserResponse {
     } catch {
         try keychain.deleteItem(forKey: "token")
         try keychain.deleteItem(forKey: "user")
+        throw APIRequestError.UserFailedFetch
     }
-    
-    throw APIRequestError.UserFailedFetch
 }
 
 
@@ -184,18 +183,13 @@ func queue(queueId: Int, storeId: Int) async throws -> QueueReponse {
     do {
         let user = try getUserFromKeyChain()        
         let token = try keychain.string(forKey: "token")
-
+        
         return try await AF
-            .request("https://ique.vercel.app/api/queues/tickets", method: .post,
-                     parameters: [
-                "queueId": queueId,
-                "customerId": user.id,
-                "storeId": storeId
-            ],
-                     headers: [
-                         "Content-Type": "application/json",
-                         "Authorization": "Bearer " + token
-                     ])
+            .request("https://ique.vercel.app/api/queues/tickets?queueId=\(queueId)&customerId=\(user.id)&storeId=\(storeId)", method: .post,
+             headers: [
+                 "Content-Type": "application/json",
+                 "Authorization": "Bearer " + token
+             ])
             .validate(statusCode: 200..<300)
             .serializingDecodable(QueueReponse.self).value
     } catch {

@@ -9,6 +9,7 @@ import SwiftUI
 import AlertKit
 import Alamofire
 import SwiftUIRouter
+import EasySkeleton
 
 struct StoreDetailView: View {
     
@@ -24,6 +25,8 @@ struct StoreDetailView: View {
     @State var store: StoreDetail = StoreDetail(id: 0, address: "", merchantId: 0, name: "Loading", type: "Loading", status: "Loading", registerTime: Date.now, resources: StoreResources(description: "", imageUrl: "", ratings: 0), phoneNumbers: [], seatTypes: [], queuesInfo: [])
     
     @State var tickets: [TicketItem] = []
+
+    @State private var isLoading = true
     
     var body: some View {
         
@@ -85,6 +88,8 @@ struct StoreDetailView: View {
                             Text(store.name)
                                 .font(.title)
                                 .bold()
+                                .skeletonable()
+                                .skeletonCornerRadius(8)
                             Spacer()
                             HStack(alignment: .firstTextBaseline, spacing: 3) {
                                 Image(systemName: "star")
@@ -94,8 +99,8 @@ struct StoreDetailView: View {
                             .font(.system(size: 16, weight: .regular))
                         }
                     }
-                    .padding(.horizontal, 24)
-                    .padding(.vertical)
+                        .padding(.horizontal, 24)
+                        .padding(.vertical)
                     
                     VStack(spacing: 0) {
                         VStack(spacing: 0) {
@@ -105,15 +110,21 @@ struct StoreDetailView: View {
                                 .lineSpacing(1)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .clipped()
+                                .skeletonable()
+                                .skeletonCornerRadius(8)
                         }
                         .padding()
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(store.address)
                                     .font(.subheadline.weight(.semibold))
+                                    .skeletonable()
+                                    .skeletonCornerRadius(8)
                                 Text(store.type)
                                     .foregroundColor(.secondary)
                                     .font(.footnote)
+                                    .skeletonable()
+                                    .skeletonCornerRadius(8)
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .clipped()
@@ -125,18 +136,18 @@ struct StoreDetailView: View {
                                 .fill(Color(.systemGray6))
                         }
                     }
-                    .clipped()
-                    .background {
-                        Rectangle()
-                            .fill(Color(.systemGray6))
-                    }
-                    .mask {
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    }
-                    .padding(.horizontal, 12)
-                    .padding(.bottom, 12)
+                        .clipped()
+                        .background {
+                            Rectangle()
+                                .fill(Color(.systemGray6))
+                        }
+                        .mask {
+                            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                        }
+                        .padding(.horizontal, 12)
+                        .padding(.bottom, 12)
                     
-                    if (store.status == "onService") {
+                    if (!store.queuesInfo.filter { $0.queueId > 0 }.isEmpty) {
                         VStack(spacing: 0) {
                             Text("Select a Queue….")
                                 .frame(alignment: .leading)
@@ -148,7 +159,7 @@ struct StoreDetailView: View {
                                 .padding(.top)
                                 .opacity(0.5)
                             VStack(spacing: 0) {
-                                ForEach(store.queuesInfo, id: \.queueId) { q in
+                                ForEach(store.queuesInfo.filter { $0.queueId > 0 }, id: \.queueId) { q in
                                     HStack(alignment: .firstTextBaseline) {
                                         Text(q.seatType?.name ?? "")
                                             .font(.body)
@@ -158,7 +169,7 @@ struct StoreDetailView: View {
                                             Image(systemName: "person")
                                                 .frame(width: 20)
                                                 .clipped()
-                                            Text(String(q.waitingSize!))
+                                            Text(String(q.waitingSize))
                                             if let ticket = tickets.first(where: {$0.queueId == q.queueId}) {
                                                 Button("Go to Ticket") {
                                                     navigator.navigate("/tickets/" + String(ticket.ticketId))
@@ -174,11 +185,16 @@ struct StoreDetailView: View {
                                                 Button("Queue!") {
                                                     alertManager.show(primarySecondary: .info(
                                                             title: "Request Ticket Confirmation",
-                                                            message: "You're requesting to queue \(q.seatType?.name ?? ""). There are \(q.waitingSize!) group(s) waiting in front of you, expect to wait \(q.estimateWaitingTime!) min(s).",
+                                                            message: "You're requesting to queue \(q.seatType?.name ?? ""). There are \(q.waitingSize) group(s) waiting in front of you, expect to wait \(q.estimateWaitingTime) min(s).",
                                                             primaryButton: Alert.Button.destructive(Text("OK")) {
                                                                 Task {
-                                                                    let ticket = try await queue(queueId: +q.queueId!, storeId: +store.id)
-                                                                    navigator.navigate("/tickets/" + String(ticket.ticketId))
+                                                                    do {
+                                                                        let ticket = try await queue(queueId: +q.queueId, storeId: +store.id)
+                                                                        navigator.navigate("/tickets/" + String(ticket.ticketId))
+                                                                    } catch {
+                                                                        debugPrint(error)
+                                                                    }
+
                                                                 }
                                                     },
                                                             secondaryButton: Alert.Button.cancel()))
@@ -194,7 +210,7 @@ struct StoreDetailView: View {
                                             }
                                         }
                                         .foregroundColor(Color.gray)
-                                        
+
                                     }
                                         .padding(.vertical)
                                         .background(alignment: .bottom) {
@@ -214,20 +230,31 @@ struct StoreDetailView: View {
                             }
                             .padding(.horizontal, 12)
                     }
+
+                        
+
                     Spacer()
-                }.onAppear {
-                    Task {
-                        do {
-                            let store = try await getStoreDetail(storeId: storeId)
-                            self.store = store
+                }
+                    .onAppear {
+                        Task {
+                            do {
+                                self.isLoading = true
+                                
+                                let store = try await getStoreDetail(storeId: storeId)
+                                self.store = store
+                                
+                                let tickets = try await getTickets()
+                                self.tickets = tickets
+                                
+                            } catch {
+                                navigator.navigate("/auth", replace: true)
+                            }
                             
-                            let tickets = try await getTickets()
-                            self.tickets = tickets
-                        } catch {
-                            navigator.navigate("/auth", replace: true)
+                            self.isLoading = false
                         }
                     }
-                }.uses(alertManager)
+                    .uses(alertManager)
+                    .setSkeleton($isLoading)
             }.ignoresSafeArea()
         
     }

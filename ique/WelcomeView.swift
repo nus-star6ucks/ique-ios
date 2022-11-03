@@ -60,6 +60,7 @@ struct WelcomeView: View {
                     }
                     Spacer()
                     VStack {
+                        
                         HStack(alignment: .firstTextBaseline, spacing: 6) {
                             Image(systemName: "applelogo")
                                 .imageScale(.medium)
@@ -148,8 +149,6 @@ struct WelcomeView: View {
                             alertManager.show(dismiss: .error(message: "User credentials are mismatched!"))
                             username = ""
                             password = ""
-                            
-                            debugPrint(error)
                         }
                     }
                 })

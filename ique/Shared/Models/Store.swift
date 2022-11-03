@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import DefaultCodable
 
 struct StoreResources: Codable {
     var description: String
@@ -14,8 +14,11 @@ struct StoreResources: Codable {
     var ratings: Int
 }
 
+
 struct SeatType: Codable {
-    var id: Int?
+    @Default<Zero>
+    var id: Int
+    
     var name: String
 }
 
@@ -29,13 +32,20 @@ struct StoreItem: Codable {
     var registerTime: Date
     var resources: StoreResources
     var phoneNumbers: [String]
+    
     var seatTypes: [SeatType]
 }
 
 struct QueueInfo: Codable {
-    var queueId: Int?
-    var waitingSize: Int?
-    var estimateWaitingTime: Int?
+    @Default<Zero>
+    var queueId: Int
+    
+    @Default<Zero>
+    var waitingSize: Int
+    
+    @Default<Zero>
+    var estimateWaitingTime: Int
+    
     var seatType: SeatType?
 }
 

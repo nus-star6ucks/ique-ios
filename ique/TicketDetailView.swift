@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftUIRouter
+import EasySkeleton
 
 struct TicketDetailView: View {
     
@@ -20,7 +21,9 @@ struct TicketDetailView: View {
     
     @State var store: StoreDetail = StoreDetail(id: 0, address: "", merchantId: 0, name: "Loading", type: "Loading", status: "Loading", registerTime: Date.now, resources: StoreResources(description: "Loading", imageUrl: "", ratings: 0), phoneNumbers: [], seatTypes: [], queuesInfo: [])
     
-    @State var ticket: TicketDetail = TicketDetail(customerId: 0, endTime: Date.now, queueInfo: QueueInfo(queueId: 0, waitingSize: 999, estimateWaitingTime: 0, seatType: SeatType(name: "none")), queueNumber: 0, startTime: Date.now, status: "", storeId: 0, id: 0)
+    @State var ticket: TicketDetail = TicketDetail(customerId: 0, endTime: Date.now, queueInfo: QueueInfo(seatType: SeatType(name: "none")), queueNumber: 0, startTime: Date.now, status: "", storeId: 0, id: 0)
+    
+    @State private var isLoading = true
     
     var body: some View {
         ZStack {
@@ -77,6 +80,8 @@ struct TicketDetailView: View {
                         Text(store.name)
                             .font(.title)
                             .fontWeight(.bold)
+                            .skeletonable()
+                            .skeletonCornerRadius(8)
                         Spacer()
                     }
                 }
@@ -93,13 +98,15 @@ struct TicketDetailView: View {
                                 .foregroundColor(Color.gray)
                                 .padding(.top, 12)
                             
-                            Text((ticket.queueInfo.waitingSize! - 1) == 0 ? "You are Next!" : String(ticket.queueNumber))
+                            Text((ticket.queueInfo.waitingSize - 1) == 0 ? "You are Next!" : String(ticket.queueNumber))
                                 .foregroundColor(primaryColor)
                                 .bold()
                                 .multilineTextAlignment(.center)
                                 .font(.title)
                                 .padding(.vertical, 12)
                                 .padding(.top, -12)
+                                .skeletonable()
+                                .skeletonCornerRadius(8)
                         }
                             .padding(12)
                         HStack(spacing: 8) {
@@ -113,6 +120,8 @@ struct TicketDetailView: View {
                                     .fontWeight(.semibold)
                                     .multilineTextAlignment(.leading)
                                     .font(.headline)
+                                    .skeletonable()
+                                    .skeletonCornerRadius(8)
                                     
                             }
                             Spacer()
@@ -122,10 +131,12 @@ struct TicketDetailView: View {
                                     .fontWeight(.regular)
                                     .foregroundColor(Color.gray)
                                     .multilineTextAlignment(.leading)
-                                Text(String(ticket.queueInfo.waitingSize! - 1) + " group(s)")
+                                Text(String(ticket.queueInfo.waitingSize - 1) + " group(s)")
                                     .fontWeight(.semibold)
                                     .multilineTextAlignment(.leading)
                                     .font(.headline)
+                                    .skeletonable()
+                                    .skeletonCornerRadius(8)
                                     
                             }
                             Spacer()
@@ -135,10 +146,12 @@ struct TicketDetailView: View {
                                     .fontWeight(.regular)
                                     .foregroundColor(Color.gray)
                                     .multilineTextAlignment(.leading)
-                                Text(String(ticket.queueInfo.estimateWaitingTime!) + " mins")
+                                Text(String(ticket.queueInfo.estimateWaitingTime) + " mins")
                                     .fontWeight(.semibold)
                                     .multilineTextAlignment(.leading)
                                     .font(.headline)
+                                    .skeletonable()
+                                    .skeletonCornerRadius(8)
                                     
                             }
                         }
@@ -167,19 +180,25 @@ struct TicketDetailView: View {
     
                 
                 Spacer()
-            }.onAppear {
-                Task {
-                    do {
-                        let ticket = try await getTicketDetail(ticketId: ticketId)
-                        self.ticket = ticket
-                        
-                        let store = try await getStoreDetail(storeId: String(ticket.storeId))
-                        self.store = store
-                    } catch {
-                        navigator.navigate("/auth", replace: true)
+            }
+                .onAppear {
+                    Task {
+                        do {
+                            self.isLoading = true
+                            
+                            let ticket = try await getTicketDetail(ticketId: ticketId)
+                            self.ticket = ticket
+                            
+                            let store = try await getStoreDetail(storeId: String(ticket.storeId))
+                            self.store = store
+                            
+                        } catch {
+                            navigator.navigate("/auth", replace: true)
+                        }
+                        self.isLoading = false
                     }
                 }
-            }
+                .setSkeleton($isLoading)
             Spacer()
                 .frame(height: 108)
                 .clipped()
