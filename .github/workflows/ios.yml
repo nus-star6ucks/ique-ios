@@ -56,6 +56,5 @@ jobs:
           xcode: ${{ matrix.xcode }}
           platform: ${{ matrix.platform }}
           action: build # default = `test`
-#           code-sign-certificate: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
-#           mobile-provisioning-profiles-base64: |
-#             ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
+          scheme: ique
+          workspace: ique.xcodeproj/project.xcworkspace
