@@ -9,6 +9,7 @@ import SwiftUI
 import AlertKit
 import WebKit
 import Alamofire
+import SwiftUIRouter
 
 struct WebView : UIViewRepresentable {
     @State var url: String // 1
@@ -32,6 +33,8 @@ struct WelcomeView: View {
     @StateObject var alertManager = AlertManager()
     
     @State var showRegisterWebView = false
+    
+    @EnvironmentObject private var navigator: Navigator
     
     var body: some View {
         NavigationView {
@@ -129,7 +132,7 @@ struct WelcomeView: View {
                             let loginResponse = try await login(username: username, password: password)
 
                             try keychain.set(loginResponse.token, forKey: "token")
-//
+
                             let userResponse = try await getUser()
                             let jsonUserData = try JSONEncoder().encode(userResponse)
 
@@ -139,6 +142,8 @@ struct WelcomeView: View {
 
                             username = ""
                             password = ""
+                            
+                            navigator.navigate("/", replace: true)
                         } catch {
                             alertManager.show(dismiss: .error(message: "User credentials are mismatched!"))
                             username = ""

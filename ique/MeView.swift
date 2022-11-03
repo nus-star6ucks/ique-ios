@@ -9,9 +9,11 @@ import SwiftUI
 import Alamofire
 import SwiftUIRouter
 
+
 struct MeView: View {
     
     @EnvironmentObject private var navigator: Navigator
+    @State var user: UserResponse = UserResponse(id: 0, username: "Test", userType: "customer", phoneNumber: "00000000", createTime: Date.now)
     
     var body: some View {
         VStack {
@@ -21,7 +23,7 @@ struct MeView: View {
                          Text(":-) Welcome Back,")
                              .font(.title3)
                              .padding(.bottom, 0.5)
-                         Text("wwy701")
+                         Text(user.username)
                              .font(.title)
                      }
                      Spacer()
@@ -39,12 +41,29 @@ struct MeView: View {
                 }
                 HStack {
                     Text("Logout").onTapGesture {
-                        navigator.navigate("auth", replace: true)
+                        do {
+                            try keychain.deleteItem(forKey: "token")
+                            try keychain.deleteItem(forKey: "user")
+                            navigator.navigate("/auth", replace: true)
+                        } catch {
+                            
+                        }
                     }
                 }
             }
             .listStyle(InsetGroupedListStyle())
             .navigationBarTitle("Profile")
+        }.onAppear {
+            Task {
+                do {
+                    let user = try getUserFromKeyChain()
+                    self.user = user
+                } catch {
+                    try keychain.deleteItem(forKey: "token")
+                    try keychain.deleteItem(forKey: "user")
+                    navigator.navigate("/auth", replace: true)
+                }
+            }
         }
     }
 }

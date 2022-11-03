@@ -42,7 +42,7 @@ struct TicketsView: View {
                                     let tickets = try await getTickets()
                                     self.tickets = tickets
                                 } catch {
-                                    navigator.navigate("auth", replace: true)
+                                    navigator.navigate("/auth", replace: true)
                                 }
                             }
                         }

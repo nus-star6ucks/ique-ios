@@ -8,10 +8,10 @@
 import Foundation
 
 struct UserResponse: Codable {
-    var id: String
+    var id: Int
     var username: String
     var userType: String
     var phoneNumber: String
     var status: String?
-    var createTime: Int
+    var createTime: Date
 }

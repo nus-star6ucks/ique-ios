@@ -176,7 +176,7 @@ struct TicketDetailView: View {
                         let store = try await getStoreDetail(storeId: String(ticket.storeId))
                         self.store = store
                     } catch {
-                        navigator.navigate("auth", replace: true)
+                        navigator.navigate("/auth", replace: true)
                     }
                 }
             }
