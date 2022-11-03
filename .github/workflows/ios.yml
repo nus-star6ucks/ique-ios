@@ -52,7 +52,6 @@ jobs:
         uses: mxcl/xcodebuild@v1.11.0
         with:
           xcode: ${{ matrix.xcode }}
-          platform: ${{ matrix.platform }}
-          action: build # default = `test`
+          action: build
           scheme: ique
           workspace: ique.xcodeproj/project.xcworkspace
