@@ -14,8 +14,6 @@ jobs:
       matrix:
         swift:
           - 5.7
-        platform:
-          - iOS
         xcode:
           - 13.4.1
     steps:
