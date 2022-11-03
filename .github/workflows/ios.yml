@@ -17,8 +17,7 @@ jobs:
         platform:
           - iOS
         xcode:
-          - ^14
-          - ^13
+          - 13.4.1
     steps:
       - name: Checkout
         uses: actions/checkout@v3
