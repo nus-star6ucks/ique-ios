@@ -28,6 +28,3 @@ jobs:
           xcode: ${{ matrix.xcode }}
           platform: ${{ matrix.platform }}
           action: build # default = `test`
-          code-coverage: true # default = `false`
-          warnings-as-errors: true # default = `false`
-          configuration: release # no default, ie. `xcodebuild` decides itself
