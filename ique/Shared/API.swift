@@ -42,7 +42,12 @@ class AuthRequestInterceptor: RequestInterceptor {
 let interceptor = AuthRequestInterceptor()
 
 let keychain = SimpleKeychain(service: "com.star6ucks.ique")
-                              
+
+let umsApiBaseUrl = "https://mock.apifox.cn/m1/1701091-0-9ec0a847"
+
+let qmsApiBaseUrl = "https://mock.apifox.cn/m1/1701091-0-default"
+
+let smsApiBaseUrl = "https://mock.apifox.cn/m1/1701091-0-b519d081"
                               
 func getUserFromKeyChain() throws -> UserResponse {
     guard try keychain.hasItem(forKey: "token") else {
@@ -68,7 +73,7 @@ func getUserFromKeyChain() throws -> UserResponse {
 
 func getStores() async throws -> [StoreItem] {
     return try await AF
-        .request("https://ique.vercel.app/api/stores/list",
+        .request("\(smsApiBaseUrl)/stores/list",
                  method: .get,
                  headers: [
                     "Content-Type": "application/json",
@@ -88,7 +93,7 @@ func getTickets() async throws -> [TicketItem] {
     let token = try keychain.string(forKey: "token")
     
     return try await AF
-        .request("https://ique.vercel.app/api/queues/tickets?userId=\(user.id)",
+        .request("\(qmsApiBaseUrl)/queues/tickets?userId=\(user.id)",
                  method: .get,
                  headers: [
             "Content-Type": "application/json",
@@ -109,7 +114,7 @@ func getUser() async throws -> UserResponse {
 
     
     return try await AF
-        .request("https://ique.vercel.app/api/users",
+        .request("\(umsApiBaseUrl)/users",
                  method: .get,
                  headers: [
             "Content-Type": "application/json",
@@ -128,7 +133,7 @@ func refreshToken() async throws -> RefreshTokenResponse {
     let token = try keychain.string(forKey: "token")
 
     return try await AF
-        .request("https://ique.vercel.app/api/users/refresh",
+        .request("\(umsApiBaseUrl)/users/refresh",
                  method: .get,
                  headers: [
             "Content-Type": "application/json",
@@ -149,7 +154,7 @@ func getStoreDetail(storeId: String) async throws -> StoreDetail {
 
 
     return try await AF
-        .request("https://ique.vercel.app/api/stores/" + String(storeId),
+        .request("\(smsApiBaseUrl)/stores/" + String(storeId),
                  method: .get,
                  headers: [
             "Content-Type": "application/json",
@@ -170,7 +175,7 @@ func getTicketDetail(ticketId: String) async throws -> TicketDetail {
 
 
     return try await AF
-        .request("https://ique.vercel.app/api/queues/tickets/" + String(ticketId),
+        .request("\(qmsApiBaseUrl)/queues/tickets/" + String(ticketId),
                  method: .get,
                  headers: [
             "Content-Type": "application/json",
@@ -186,7 +191,7 @@ func queue(queueId: Int, storeId: Int) async throws -> QueueReponse {
         let token = try keychain.string(forKey: "token")
         
         return try await AF
-            .request("https://ique.vercel.app/api/queues/tickets?queueId=\(queueId)&customerId=\(user.id)&storeId=\(storeId)", method: .post,
+            .request("\(qmsApiBaseUrl)/queues/tickets?queueId=\(queueId)&customerId=\(user.id)&storeId=\(storeId)", method: .post,
              headers: [
                  "Content-Type": "application/json",
                  "Authorization": "Bearer " + token
@@ -202,7 +207,7 @@ func queue(queueId: Int, storeId: Int) async throws -> QueueReponse {
 
 func login(username: String, password: String) async throws -> LoginResponse {
     return try await AF
-        .request("https://ique.vercel.app/api/users/login", method: .post, parameters: [
+        .request("\(umsApiBaseUrl)/users/login", method: .post, parameters: [
             "username": username,
             "password": password
         ], encoder: JSONParameterEncoder.default)

@@ -100,7 +100,7 @@ struct TicketDetailView: View {
                             
                             Text((ticket.queueInfo.waitingSize - 1) == 0 ? "You are Next!" : String(ticket.queueNumber))
                                 .foregroundColor(primaryColor)
-                                .bold()
+                                .fontWeight(.bold)
                                 .multilineTextAlignment(.center)
                                 .font(.title)
                                 .padding(.vertical, 12)
@@ -166,14 +166,17 @@ struct TicketDetailView: View {
                     
                     VStack(alignment: .leading, spacing: 4) {
                         Text("· Please ensure everyone is present when queue number is called.")
+                            .fontWeight(.light)
                             .lineLimit(nil)
                         Text("· Ticket will not be valid if ticket exceeds 3 number or above.")
+                            .fontWeight(.light)
                         Text("· Dine-in is for up to groups of 5 fully vaccinated persons only.")
+                            .fontWeight(.light)
                         Text("· For iOS users, please kindly take a screenshot of this page.")
+                            .fontWeight(.light)
                     }
                     .padding(.horizontal, 24)
                     .font(.footnote)
-                    .fontWeight(.light)
                     .fixedSize(horizontal: false, vertical: true)
                     .foregroundColor(Color.gray)
                 }
