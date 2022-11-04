@@ -9,13 +9,13 @@ on:
 jobs:
   build:
     name: Build and Test default scheme using any available iPhone simulator
-    runs-on: macos-latest
+    runs-on: macos-13
     strategy:
       matrix:
         swift:
           - 5.7
         xcode:
-          - ^14
+          - 14.1
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
