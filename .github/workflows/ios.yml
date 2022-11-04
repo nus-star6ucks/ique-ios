@@ -15,7 +15,7 @@ jobs:
         swift:
           - 5.7
         xcode:
-          - 14.1
+          - ^14
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
