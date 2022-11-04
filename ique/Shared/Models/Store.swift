@@ -32,7 +32,6 @@ struct StoreItem: Codable {
     var registerTime: Date
     var resources: StoreResources
     var phoneNumbers: [String]
-    
     var seatTypes: [SeatType]
 }
 

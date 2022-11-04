@@ -44,7 +44,7 @@ struct WelcomeView: View {
                         VStack(alignment: .leading) {
                             Text("Login")
                                 .font(.title)
-                                .bold()
+                                .fontWeight(.bold)
                         }
                         Spacer()
                     }
@@ -53,8 +53,8 @@ struct WelcomeView: View {
                          Image("login").resizable()
                              .aspectRatio(contentMode: .fit)
                          VStack() {
-                             Text("Queue Better,").font(.title).multilineTextAlignment(.leading).bold()
-                             Text("Enjoy Life Happier.").font(.title).bold()
+                             Text("Queue Better,").font(.title).fontWeight(.bold).multilineTextAlignment(.leading)
+                             Text("Enjoy Life Happier.").font(.title).fontWeight(.bold)
                          }
                             .padding(.top)
                     }
@@ -114,7 +114,7 @@ struct WelcomeView: View {
             .uses(alertManager)
             .customAlert(manager: customAlertManager, content: {
                 VStack {
-                    Text("Continue with Account").bold().padding(.bottom)
+                    Text("Continue with Account").fontWeight(.bold).padding(.bottom)
                     TextField("Username", text: $username).textFieldStyle(RoundedBorderTextFieldStyle()).padding(.bottom, 1)
                     SecureField("Password", text: $password).textFieldStyle(RoundedBorderTextFieldStyle())
                 }
@@ -123,7 +123,7 @@ struct WelcomeView: View {
                     Text("Cancel")
                 }),
                 .regular(content: {
-                    Text("Login").bold()
+                    Text("Login").fontWeight(.bold)
                 }, action: {
                     if (username.isEmpty || password.isEmpty) {
                         return

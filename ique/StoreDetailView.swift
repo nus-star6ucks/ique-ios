@@ -87,7 +87,7 @@ struct StoreDetailView: View {
                         HStack(alignment: .firstTextBaseline) {
                             Text(store.name)
                                 .font(.title)
-                                .bold()
+                                .fontWeight(.bold)
                                 .skeletonable()
                                 .skeletonCornerRadius(8)
                             Spacer()

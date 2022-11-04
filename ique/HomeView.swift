@@ -29,7 +29,7 @@ struct HomeView: View {
                             .font(.caption)
                         Text("iQueue")
                             .font(.title)
-                            .bold()
+                            .fontWeight(.bold)
                     }
                     Spacer()
                     if (isLoggedIn) {
