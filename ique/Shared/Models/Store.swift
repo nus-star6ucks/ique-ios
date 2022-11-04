@@ -11,7 +11,7 @@ import DefaultCodable
 struct StoreResources: Codable {
     var description: String
     var imageUrl: String
-    var ratings: Int
+    var ratings: Float
 }
 
 

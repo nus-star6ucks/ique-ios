@@ -18,7 +18,6 @@ struct StoreCardView: View {
                  image
                     .renderingMode(.original)
                     .resizable()
-//                    .aspectRatio(contentMode: .fit)
                     .mask {
                         RoundedRectangle(cornerRadius: 6, style: .continuous)
                     }

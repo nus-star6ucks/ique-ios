@@ -126,8 +126,8 @@ struct HomeView: View {
                     .onAppear {
                         Task {
                             let storeItems = try await getStores()
-                            self.storeRows = storeItems.chunked(into: 2)
                             
+                            self.storeRows = storeItems.chunked(into: 2)
                             do {
                                 try getUserFromKeyChain()
                                 self.isLoggedIn = true
