@@ -14,8 +14,6 @@ jobs:
       matrix:
         swift:
           - 5.7
-        xcode:
-          - ^14
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -51,7 +49,6 @@ jobs:
       - name: mxcl/Xcodebuild
         uses: mxcl/xcodebuild@v1.11.0
         with:
-          xcode: ${{ matrix.xcode }}
           action: build
           scheme: ique
           workspace: ique.xcodeproj/project.xcworkspace
