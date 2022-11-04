@@ -13,6 +13,7 @@
 		1777F40B290FDACD0017FD80 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F40A290FDACD0017FD80 /* Ticket.swift */; };
 		1777F413290FE94D0017FD80 /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1777F412290FE94D0017FD80 /* AlertKit */; };
 		1777F415290FF7ED0017FD80 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F414290FF7ED0017FD80 /* LoginResponse.swift */; };
+		1779C0B72915631200305DA9 /* Argon2Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 1779C0B62915631200305DA9 /* Argon2Swift */; };
 		177C85C1290FAF0D0064259A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177C85C0290FAF0D0064259A /* Store.swift */; };
 		177D355E29117860001F7A1F /* SwiftUIRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 177D355D29117860001F7A1F /* SwiftUIRouter */; };
 		177FAEDC29124A42009A0121 /* TicketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177FAEDB29124A42009A0121 /* TicketDetailView.swift */; };
@@ -65,6 +66,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1712818C290F96D800E2593E /* (null) in Frameworks */,
+				1779C0B72915631200305DA9 /* Argon2Swift in Frameworks */,
 				177D355E29117860001F7A1F /* SwiftUIRouter in Frameworks */,
 				17AD017F2913A39900D9C4A9 /* DefaultCodable in Frameworks */,
 				1777F413290FE94D0017FD80 /* AlertKit in Frameworks */,
@@ -175,6 +177,7 @@
 				17AD01682913792B00D9C4A9 /* SimpleKeychain */,
 				17AD017B29139F0600D9C4A9 /* EasySkeleton */,
 				17AD017E2913A39900D9C4A9 /* DefaultCodable */,
+				1779C0B62915631200305DA9 /* Argon2Swift */,
 			);
 			productName = ique;
 			productReference = 17BB2B1D290E46BB00A30BB6 /* ique.app */;
@@ -211,6 +214,7 @@
 				17AD01672913792B00D9C4A9 /* XCRemoteSwiftPackageReference "SimpleKeychain" */,
 				17AD017A29139F0600D9C4A9 /* XCRemoteSwiftPackageReference "EasySkeleton" */,
 				17AD017D2913A39900D9C4A9 /* XCRemoteSwiftPackageReference "DefaultCodable" */,
+				1779C0B52915631200305DA9 /* XCRemoteSwiftPackageReference "Argon2Swift" */,
 			);
 			productRefGroup = 17BB2B1E290E46BB00A30BB6 /* Products */;
 			projectDirPath = "";
@@ -491,6 +495,14 @@
 				minimumVersion = 0.2.0;
 			};
 		};
+		1779C0B52915631200305DA9 /* XCRemoteSwiftPackageReference "Argon2Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tmthecoder/Argon2Swift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		177D355C29117860001F7A1F /* XCRemoteSwiftPackageReference "SwiftUIRouter" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/frzi/SwiftUIRouter.git";
@@ -538,6 +550,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1777F411290FE94D0017FD80 /* XCRemoteSwiftPackageReference "AlertKit" */;
 			productName = AlertKit;
+		};
+		1779C0B62915631200305DA9 /* Argon2Swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1779C0B52915631200305DA9 /* XCRemoteSwiftPackageReference "Argon2Swift" */;
+			productName = Argon2Swift;
 		};
 		177D355D29117860001F7A1F /* SwiftUIRouter */ = {
 			isa = XCSwiftPackageProductDependency;

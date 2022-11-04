@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 import SwiftUIRouter
 import SimpleKeychain
+import Argon2Swift
 
 enum APIRequestError: Error {
     case UserNotLoggedIn
@@ -204,13 +205,19 @@ func queue(queueId: Int, storeId: Int) async throws -> QueueReponse {
 }
 
 
-
 func login(username: String, password: String) async throws -> LoginResponse {
     return try await AF
         .request("\(umsApiBaseUrl)/users/login", method: .post, parameters: [
             "username": username,
-            "password": password
+            "password": try hashPassword(password: password)
         ], encoder: JSONParameterEncoder.default)
         .validate(statusCode: 200..<300)
         .serializingDecodable(LoginResponse.self).value
+}
+
+func hashPassword(password: String) throws -> String {
+    let salt = Salt(bytes: String(ProcessInfo.processInfo.environment["HASH_SALT"] ?? "").data(using: .utf8)!)
+    let result = try! Argon2Swift.hashPasswordString(password: password, salt: salt)
+    
+    return result.encodedString()
 }
