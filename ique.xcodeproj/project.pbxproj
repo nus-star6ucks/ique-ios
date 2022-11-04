@@ -14,6 +14,8 @@
 		1777F413290FE94D0017FD80 /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1777F412290FE94D0017FD80 /* AlertKit */; };
 		1777F415290FF7ED0017FD80 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1777F414290FF7ED0017FD80 /* LoginResponse.swift */; };
 		1779C0B72915631200305DA9 /* Argon2Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 1779C0B62915631200305DA9 /* Argon2Swift */; };
+		1779C0BA2915796C00305DA9 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 1779C0B92915796C00305DA9 /* Sentry */; };
+		1779C0BC2915796C00305DA9 /* Sentry-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 1779C0BB2915796C00305DA9 /* Sentry-Dynamic */; };
 		177C85C1290FAF0D0064259A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177C85C0290FAF0D0064259A /* Store.swift */; };
 		177D355E29117860001F7A1F /* SwiftUIRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 177D355D29117860001F7A1F /* SwiftUIRouter */; };
 		177FAEDC29124A42009A0121 /* TicketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177FAEDB29124A42009A0121 /* TicketDetailView.swift */; };
@@ -67,8 +69,10 @@
 			files = (
 				1712818C290F96D800E2593E /* (null) in Frameworks */,
 				1779C0B72915631200305DA9 /* Argon2Swift in Frameworks */,
+				1779C0BA2915796C00305DA9 /* Sentry in Frameworks */,
 				177D355E29117860001F7A1F /* SwiftUIRouter in Frameworks */,
 				17AD017F2913A39900D9C4A9 /* DefaultCodable in Frameworks */,
+				1779C0BC2915796C00305DA9 /* Sentry-Dynamic in Frameworks */,
 				1777F413290FE94D0017FD80 /* AlertKit in Frameworks */,
 				17AD017C29139F0600D9C4A9 /* EasySkeleton in Frameworks */,
 				17AD01692913792B00D9C4A9 /* SimpleKeychain in Frameworks */,
@@ -178,6 +182,8 @@
 				17AD017B29139F0600D9C4A9 /* EasySkeleton */,
 				17AD017E2913A39900D9C4A9 /* DefaultCodable */,
 				1779C0B62915631200305DA9 /* Argon2Swift */,
+				1779C0B92915796C00305DA9 /* Sentry */,
+				1779C0BB2915796C00305DA9 /* Sentry-Dynamic */,
 			);
 			productName = ique;
 			productReference = 17BB2B1D290E46BB00A30BB6 /* ique.app */;
@@ -215,6 +221,7 @@
 				17AD017A29139F0600D9C4A9 /* XCRemoteSwiftPackageReference "EasySkeleton" */,
 				17AD017D2913A39900D9C4A9 /* XCRemoteSwiftPackageReference "DefaultCodable" */,
 				1779C0B52915631200305DA9 /* XCRemoteSwiftPackageReference "Argon2Swift" */,
+				1779C0B82915796C00305DA9 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 			);
 			productRefGroup = 17BB2B1E290E46BB00A30BB6 /* Products */;
 			projectDirPath = "";
@@ -503,6 +510,14 @@
 				kind = branch;
 			};
 		};
+		1779C0B82915796C00305DA9 /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.30.0;
+			};
+		};
 		177D355C29117860001F7A1F /* XCRemoteSwiftPackageReference "SwiftUIRouter" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/frzi/SwiftUIRouter.git";
@@ -555,6 +570,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1779C0B52915631200305DA9 /* XCRemoteSwiftPackageReference "Argon2Swift" */;
 			productName = Argon2Swift;
+		};
+		1779C0B92915796C00305DA9 /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1779C0B82915796C00305DA9 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = Sentry;
+		};
+		1779C0BB2915796C00305DA9 /* Sentry-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1779C0B82915796C00305DA9 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = "Sentry-Dynamic";
 		};
 		177D355D29117860001F7A1F /* SwiftUIRouter */ = {
 			isa = XCSwiftPackageProductDependency;
