@@ -1,4 +1,4 @@
-name: iOS starter workflow
+name: Main iOS Build
 
 on:
   push:
