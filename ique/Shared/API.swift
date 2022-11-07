@@ -216,8 +216,8 @@ func login(username: String, password: String) async throws -> LoginResponse {
 }
 
 func hashPassword(password: String) throws -> String {
-    let salt = Salt(bytes: String(ProcessInfo.processInfo.environment["HASH_SALT"] ?? "").data(using: .utf8)!)
-    let result = try! Argon2Swift.hashPasswordString(password: password, salt: salt)
+    let salt = Salt(bytes: String(ProcessInfo.processInfo.environment["HASH_SALT"] ?? "BC8ygb1gXwUhdjDtyR").data(using: .utf8)!)
+    let result = try! Argon2Swift.hashPasswordString(password: password, salt: salt, iterations: 1, memory: 1024, parallelism: 1, length: 24, type: Argon2Type.d, version: Argon2Version.V13)
     
     return result.encodedString()
 }
