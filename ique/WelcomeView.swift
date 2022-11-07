@@ -61,22 +61,22 @@ struct WelcomeView: View {
                     Spacer()
                     VStack {
                         
-                        HStack(alignment: .firstTextBaseline, spacing: 6) {
-                            Image(systemName: "applelogo")
-                                .imageScale(.medium)
-                            Text("Continue with Apple")
-                        }
-                            .font(.body.weight(.medium))
-                            .padding(.vertical, 16)
-                            .frame(maxWidth: .infinity)
-                            .clipped()
-                            .foregroundColor(Color(.systemBackground))
-                            .background {
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .fill(.primary)
-                            }
+//                        HStack(alignment: .firstTextBaseline, spacing: 6) {
+//                            Image(systemName: "applelogo")
+//                                .imageScale(.medium)
+//                            Text("Continue with Apple")
+//                        }
+//                            .font(.body.weight(.medium))
+//                            .padding(.vertical, 16)
+//                            .frame(maxWidth: .infinity)
+//                            .clipped()
+//                            .foregroundColor(Color(.systemBackground))
+//                            .background {
+//                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+//                                .fill(.primary)
+//                            }
                         HStack(alignment: .firstTextBaseline) {
-                            Image(systemName: "phone.fill")
+                            Image(systemName: "envelope.fill")
                                 .imageScale(.medium)
                             Text("Continue with Account")
                         }
