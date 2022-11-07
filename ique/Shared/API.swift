@@ -44,11 +44,11 @@ let interceptor = AuthRequestInterceptor()
 
 let keychain = SimpleKeychain(service: "com.star6ucks.ique")
 
-let umsApiBaseUrl = "https://mock.apifox.cn/m1/1701091-0-9ec0a847"
+let umsApiBaseUrl = "https://ique.vercel.app/api"
 
-let qmsApiBaseUrl = "https://mock.apifox.cn/m1/1701091-0-default"
+let qmsApiBaseUrl = "https://ique.vercel.app/api"
 
-let smsApiBaseUrl = "https://mock.apifox.cn/m1/1701091-0-b519d081"
+let smsApiBaseUrl = "https://ique.vercel.app/api"
                               
 func getUserFromKeyChain() throws -> UserResponse {
     guard try keychain.hasItem(forKey: "token") else {
